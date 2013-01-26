@@ -2,6 +2,7 @@ package ;
 
 import js.Lib;
 import enchant.EnchantJS;
+import enchant.nineleap.NineLeap;
 import enchantHaxe.EnchantHX;
 
 /**
@@ -16,12 +17,17 @@ class Main
         // JavaScript の enchant(); に相当
 		Enchant.exportAll();
         
+        var ev = new enchantHaxe.EnchantHX.Event("");
+        
         var game = new Game(320, 320);
         game.fps = 15;
         game.preload(["chara1.png"]);
         
         game.onload = function ():Void 
         {
+            var splashScene = new SplashScene();
+            game.pushScene(splashScene);
+            
             var sprite = new Sprite(32, 32);
             sprite.x = 160;
             sprite.y = 160;
