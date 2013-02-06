@@ -56,8 +56,8 @@ extern class MutableText extends Sprite
     public var fontSize:Int;
     public var widthItemNum:Int;
 
-    public var text(default, dynamic):String;
-    public var row(dynamic, dynamic):Int;
+    public var text(default, default):String;
+    public var row(default, default):Int;
 
     public function setText(txt:String):Void;
 }
