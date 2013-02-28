@@ -98,7 +98,7 @@ extern class Bar extends Sprite
     public var value:Float;
     public var easing:Float;
 
-    public var direction(default, dynamic):String;
+    public var direction(default, default):String;
     public var maxvalue(default, default):Float;
 }
 
@@ -108,10 +108,10 @@ extern class VirtualMap extends Group
 
     public var meshWidth:Float;
     public var meshHeight:Float;
-	
-	public var width:Float;
-	public var height:Float;
-	
+
+    public var width:Float;
+    public var height:Float;
+
     public override function addChild(obj:Node):Void;
     public override function insertBefore(obj:Node, reference:Node):Void;
     public function bind(obj:Node):Void;

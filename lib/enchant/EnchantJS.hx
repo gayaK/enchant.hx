@@ -10,6 +10,7 @@ extern class Event
     public function new(type:String):Void;
 
     public var target:EventTarget;
+    public var type:String;
     public var x:Int;
     public var y:Int;
     public var localX:Int;
@@ -55,7 +56,7 @@ extern class Event
     public static var ACTION_REMOVED:String;
 }
 
-extern class Core
+extern class Core extends EventTarget
 {
     public function new(width:Float, height:Float):Void;
     
@@ -83,7 +84,6 @@ extern class Core
     public function load(src:String, callBack:Void->Void):Void;
     public function start():Void;
     public function debug():Void;
-    public function getTime():Int;
     public function stop():Void;
     public function pause():Void;
     public function resume():Void;
@@ -118,12 +118,13 @@ extern class Node extends EventTarget
     public var age:Int;
     public var parentNode:Group;
     public var scene:Scene;
+    public var tl:Timeline;
     
     public var x(default, default):Float;
     public var y(default, default):Float;
 
-    public function moveTo(x:Float , y:Float):Void;
-    public function moveBy(x:Float , y:Float):Void;
+    public function moveTo(x:Float, y:Float):Void;
+    public function moveBy(x:Float, y:Float):Void;
     public function remove():Void;
 }
 
@@ -147,24 +148,20 @@ extern class Entity extends Node
     public var originX(default, default):Float;
     public var originY(default, default):Float;
     
-    public function puintersect(other:Entity):Bool;
-    public function within(other:Entity, distance:Float):Bool;
+    public function intersect(other:{x:Float, y:Float, width:Float, height:Float}):Bool;
+    public function within(other:{x:Float, y:Float, width:Float, height:Float}, ?distance:Float):Bool;
     public function scale(x:Float, y:Float):Void;
     public function rotate(deg:Float):Void;
     public function enableCollection():Void;
     public function disableCollection():Void;
-    public function getConstructor():Void;
 }
 
 extern class Sprite extends Entity
 {
     public function new(width:Int, height:Int):Void;
-        
+    
     public var image(default, default):Surface;
     public var frame(default, default):Array<Int>;
-    
-    public function cvsRender(ctx:Dynamic):Void;    // todo:
-    public function domRender(element:Dynamic):Void;    // todo:
 }
 
 extern class Label extends Entity
