@@ -1,11 +1,19 @@
 package ;
 
+import enchantHaxe.nineleap.SplashSceneHx;
+import enchantHaxe.SceneHx;
+import enchantHaxe.SpriteHx;
+import enchantHaxe.ui.BarHx;
+import enchantHaxe.ui.ScoreLabelHx;
+import enchantHaxe.ui.TimeLabelHx;
+import enchantHaxe.ui.VirtualMapHx;
 import js.Lib;
 import enchant.EnchantJS;
 import enchant.nineleap.NineLeap;
 import enchant.ui.UI;
 import enchantHaxe.EnchantHx;
-import enchantHaxe.GameHx;
+import enchantHaxe.CoreHx;
+import enchantHaxe.EventType;
 
 /**
  * ...
@@ -19,46 +27,46 @@ class Main
         // JavaScript の enchant(); に相当
         EnchantHx.exportAll();
         
-        var game = new GameHx(320, 320);
+        var game = new CoreHx(new Core(320,320));
         game.fps = 15;
         game.preload(["chara1.png", "icon0.png"]);
         
         game.onload = function ():Void 
         {
-            var splashScene = new SplashScene();
+            var splashScene = new SplashSceneHx(new SplashScene());
             game.pushScene(splashScene);
             
-            var sprite = new Sprite(32, 32);
+            var sprite = new SpriteHx(new Sprite(32, 32));
             sprite.x = 160;
             sprite.y = 160;
             sprite.frame = [0, 0, 1, 1, 2, 2, 3, 3];
-            sprite.image = untyped __js__ ('game.assets["chara1.png"]');
+            sprite.image = game.assets.get("chara1.png");
             
-            var scoreLabel = new ScoreLabel(10, 0);
+            var scoreLabel = new ScoreLabelHx(new ScoreLabel(10, 0));
             
-            var timeLabel = new TimeLabel(10, 20);
+            var timeLabel = new TimeLabelHx(new TimeLabel(10, 20));
             timeLabel.time = 30;
             
-            var bar = new Bar(10, 40);
+            var bar = new BarHx(new Bar(10, 40));
             bar.maxvalue = 100;
             bar.value = 100;
             
-            var board = new VirtualMap(16, 16);
+            var board = new VirtualMapHx(new VirtualMap(16, 16));
             board.width = 320;
             board.height = 320;
 
             var icons = [];
             for(i in 0...20){
-                var icon = new Sprite(16, 16);
+                var icon = new SpriteHx(new Sprite(16, 16));
                 icon.frame = [10];
-                icon.image = untyped __js__ ('game.assets["icon0.png"]');
-                board.addChild(icon);
-                untyped __js__ ("icon.mx = i");
-                untyped __js__ ("icon.my = i");
+                icon.image = game.assets.get("icon0.png");
+                var meshedIcon = board.addChildOnMesh(icon);
+                meshedIcon.mx = i;
+                meshedIcon.my = i;
                 icons.push(icon);
             }
             
-            var scene = new Scene();
+            var scene = new SceneHx(new Scene());
             scene.backgroundColor = "#eeeeeeee";
             scene.addChild(sprite);
             scene.addChild(scoreLabel);
@@ -67,7 +75,7 @@ class Main
             scene.addChild(board);
             
             scene.addEventListener(
-                Event.TOUCH_START,
+                EventType.TOUCH_START,
                 function (e):Void 
                 {
                     sprite.x = e.x;
@@ -78,7 +86,7 @@ class Main
             
             // 毎フレーム実行する処理
             scene.addEventListener(
-                Event.ENTER_FRAME,
+                EventType.ENTER_FRAME,
                 function (e):Void
                 {
                     if(bar.value > 0){

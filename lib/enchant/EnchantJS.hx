@@ -1,5 +1,11 @@
 package enchant;
 
+import js.html.CanvasRenderingContext2D;
+import js.html.CSSStyleDeclaration;
+import js.html.HtmlElement;
+import js.html.svg.AnimatedBoolean;
+import js.html.VoidCallback;
+
 /**
  * ...
  * @author gaya_K
@@ -244,15 +250,15 @@ extern class DetectColorManager
 
 extern class DomManager /*implements IDomMangager*/
 {
-    @:overload(function(node:Node, elementDefinition:Dynamic/*HTMLElement*/):Void{}) 
+    @:overload(function(node:Node, elementDefinition:HtmlElement):Void{}) 
     public function new(node:Node, elementDefinition:String):Void;
     
     public var layer:DomLayer;
     public var targetNode:Node;
-    public var element:Dynamic/*HTMLElement*/;
-    public var style:Dynamic/*CSSStyleDeclaration*/;
-    public function getDomElement():Dynamic/*HTMLElement*/;
-    public function getDomElementAsNext():Dynamic/*HTMLElement*/;
+    public var element:HtmlElement;
+    public var style:CSSStyleDeclaration;
+    public function getDomElement():HtmlElement;
+    public function getDomElementAsNext():HtmlElement;
     public function getNextManager(manager:DomManager):DomManager;
     public function addManager(childManager:DomManager, nextManager:DomManager):Void;
     @:overload(function(childManager:DomlessManager):Void{})
@@ -282,29 +288,27 @@ extern class DomLayer extends Group
 {
     public function new():Void;
     
-    public var width:Int;
-    public var height:Int;
+    public var width:Float;
+    public var height:Float;
 }
 
 extern class CanvasLayer extends Group
 {
     public function new():Void;
     
-    public var width:Int;
-    public var height:Int;
-    public var context:Dynamic/*CanvasRenderingContext2D*/;
+    public var width:Float;
+    public var height:Float;
+    public var context:CanvasRenderingContext2D;
 }
 
 extern class Scene extends Group
 {
     public function new():Void;
     
-    public var width:Int;
-    public var height:Int;
+    public var width:Float;
+    public var height:Float;
 
     public var backgroundColor(default, default):String;
-    
-    public function addLayer(type:String, ?i:Int):Void;    // todo:
 }
 
 extern class CanvasScene extends Scene
@@ -321,9 +325,11 @@ extern class Surface extends EventTarget
 {
     public function new(widht:Float, height:Float):Void;
     
-    public var width:Int;
-    public var height:Int;
-    public var context:Dynamic/*CanvasRenderingContext2D*/;
+    public var width:Float;
+    public var height:Float;
+    public var context:CanvasRenderingContext2D;
+    
+    public static function load(src:String, callBack:Void->Void):Void;
 
     public function getPixel(x:Int , y:Int):Array<Int>;
     public function setPixel(x:Int, y:Int, r:Int, g:Int, b:Int, a:Int):Void;
@@ -376,10 +382,18 @@ extern class ActionEventTarget extends EventTarget
     public function new():Void;
 }
 
+typedef  Easing = Float->Float->Float->Float->Float;
+
 extern class Timeline extends EventTarget
 {
     public function new(node:Node):Void;
     
+    public var node:Node;
+    public var queue:Array<Action>;
+    public var paused:Bool;
+    public var looped:Bool;
+    public var isFrameBased:Bool;
+
     public function setFrameBased():Void;
     public function setTimeBased():Void;
     public function next(remainingTime:Float):Void;
@@ -394,26 +408,25 @@ extern class Timeline extends EventTarget
     public function loop():Timeline;
     public function unloop():Timeline;
     public function delay(time:Int):Timeline;
-    public function wait(time:Int):Timeline;
     public function then(func:Node->Void):Timeline;
     public function cue(cue:Dynamic/*Dictionary<Int,Void->Void>*/):Void;
     public function repeat(func:Void->Void, time:Int):Timeline;
     public function and():Timeline;
     public function waitUntil(func:Void->Bool):Timeline;
-    public function fadeTo(opacity:Float, time:Int , easing:Float->Float->Float->Float->Float):Timeline;
-    public function fadeIn(time:Int , easing:Float->Float->Float->Float->Float):Timeline;
-    public function fadeOut(time:Int , easing:Float->Float->Float->Float->Float):Timeline;
-    public function moveTo(x:Float, y:Float, time:Int , easing:Float->Float->Float->Float->Float):Timeline;
-    public function moveX(x:Float, time:Int , easing:Float->Float->Float->Float->Float):Timeline;
-    public function moveY(y:Float, time:Int , easing:Float->Float->Float->Float->Float):Timeline;
-    public function moveBy(x:Float, y:Float, time:Int , easing:Float->Float->Float->Float->Float):Timeline;
+    public function fadeTo(opacity:Float, time:Int , ?easing:Easing):Timeline;
+    public function fadeIn(time:Int , ?easing:Easing):Timeline;
+    public function fadeOut(time:Int , ?easing:Easing):Timeline;
+    public function moveTo(x:Float, y:Float, time:Int , ?easing:Easing):Timeline;
+    public function moveX(x:Float, time:Int , ?easing:Easing):Timeline;
+    public function moveY(y:Float, time:Int , ?easing:Easing):Timeline;
+    public function moveBy(x:Float, y:Float, time:Int , ?easing:Easing):Timeline;
     public function hide():Timeline;
     public function show():Timeline;
     public function removeFromScene():Timeline;
-    public function scaleTo(scale:Float , time:Int , easing:Float->Float->Float->Float->Float):Timeline;
-    public function scaleBy(scale:Float,time:Int , easing:Float->Float->Float->Float->Float):Timeline;
-    public function rotateTo(time:Int , easing:Float->Float->Float->Float->Float):Timeline;
-    public function rotateBy(time:Int , easing:Float->Float->Float->Float->Float):Timeline;
+    public function scaleTo(scale:Float , time:Int , ?easing:Easing):Timeline;
+    public function scaleBy(scale:Float,time:Int , ?easing:Easing):Timeline;
+    public function rotateTo(time:Int , ?easing:Easing):Timeline;
+    public function rotateBy(time:Int , ?easing:Easing):Timeline;
 }
 
 extern class Action extends EventTarget
@@ -430,14 +443,14 @@ extern class ParallelAction extends Action
 {
     public function new(param:Dynamic):Void;    // todo
     
-    public var actions:Dynamic; // todo:
-    public var endedActions:Dynamic; // todo:
+    public var actions:Array<Action>;
+    public var endedActions:Array<Action>;
 }
 
 extern class Tween extends Action
 {
     public function new(param:Dynamic):Void;    // todo
     
-    public var easing:Float->Float->Float->Float->Float;
+    public var easing:Easing;
 }
 

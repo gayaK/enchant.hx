@@ -112,7 +112,5 @@ extern class VirtualMap extends Group
     public var width:Float;
     public var height:Float;
 
-    public override function addChild(obj:Node):Void;
-    public override function insertBefore(obj:Node, reference:Node):Void;
     public function bind(obj:Node):Void;
 }

@@ -67,57 +67,57 @@ class EntityHx extends NodeHx
      * 0から1までの値を設定する(0が完全な透明, 1が完全な不透明).
      */
     public var opacity(get, set):Float;
-    private function get_$() return innerEntity.$;
-    private function set_$(v) return (innerEntity.$ = v);
+    private function get_opacity() return innerEntity.opacity;
+    private function set_opacity(v) return (innerEntity.opacity = v);
 
     /**
      * Entityを表示するかどうかを指定する.
      */
     public var visible(get, set):Bool;
-    private function get_$() return innerEntity.$;
-    private function set_$(v) return (innerEntity.$ = v);
+    private function get_visible() return innerEntity.visible;
+    private function set_visible(v) return (innerEntity.visible = v);
 
     /**
      * Entityのタッチを有効にするかどうかを指定する.
      */
     public var touchEnabled(get, set):Bool;
-    private function get_$() return innerEntity.$;
-    private function set_$(v) return (innerEntity.$ = v);
+    private function get_touchEnabled() return innerEntity.touchEnabled;
+    private function set_touchEnabled(v) return (innerEntity.touchEnabled = v);
 
     /**
      * Spriteのx軸方向の倍率.
      */
     public var scaleX(get, set):Float;
-    private function get_$() return innerEntity.$;
-    private function set_$(v) return (innerEntity.$ = v);
+    private function get_scaleX() return innerEntity.scaleX;
+    private function set_scaleX(v) return (innerEntity.scaleX = v);
 
     /**
      * Spriteのy軸方向の倍率.
      */
     public var scaleY(get, set):Float;
-    private function get_$() return innerEntity.$;
-    private function set_$(v) return (innerEntity.$ = v);
+    private function get_scaleY() return innerEntity.scaleY;
+    private function set_scaleY(v) return (innerEntity.scaleY = v);
 
     /**
      * Spriteの回転角 (度数法).
      */
     public var rotation(get, set):Float;
-    private function get_$() return innerEntity.$;
-    private function set_$(v) return (innerEntity.$ = v);
+    private function get_rotation() return innerEntity.rotation;
+    private function set_rotation(v) return (innerEntity.rotation = v);
 
     /**
      * 回転・拡大縮小の基準点のX座標
      */
     public var originX(get, set):Float;
-    private function get_$() return innerEntity.$;
-    private function set_$(v) return (innerEntity.$ = v);
+    private function get_originX() return innerEntity.originX;
+    private function set_originX(v) return (innerEntity.originX = v);
 
     /**
      * 回転・拡大縮小の基準点のY座標
      */
     public var originY(get, set):Float;
-    private function get_$() return innerEntity.$;
-    private function set_$(v) return (innerEntity.$ = v);
+    private function get_originY() return innerEntity.originY;
+    private function set_originY(v) return (innerEntity.originY = v);
 
     /**
      * Entityの矩形が交差しているかどうかにより衝突判定を行う.

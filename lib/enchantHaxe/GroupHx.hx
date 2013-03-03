@@ -33,20 +33,20 @@ class GroupHx extends NodeHx
     /**
      * 最初の子Node.
      */
-    public var firstChild(get, null):Node;
+    public var firstChild(get, null):NodeHx;
     private function get_firstChild() return new NodeHx(innerGroup.firstChild);
 
     /**
      * 最後の子Node.
      */
-    public var lastChild(get, null):Node;
+    public var lastChild(get, null):NodeHx;
     private function get_lastChild() return new NodeHx(innerGroup.lastChild);
 
     /**
     * Groupの回転角 (度数法).
      */
     public var rotation(get, set):Float;
-    private function get_rotation return innerGroup.rotation;
+    private function get_rotation() return innerGroup.rotation;
     private function set_rotation(v) return (innerGroup.rotation = v);
 
     /**

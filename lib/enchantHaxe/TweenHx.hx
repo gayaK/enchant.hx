@@ -1,0 +1,29 @@
+package enchantHaxe;
+
+import enchant.EnchantJS;
+
+/**
+ * ...
+ * @author gaya_K
+ */
+
+class TweenHx extends ActionHx
+{
+    /**
+     * コンストラクタ.
+     * @param base ラップするオブジェクト.
+     */
+    public function new(base:Tween) 
+    {
+        super(base);
+        innerTween = base;
+    }
+    
+    /**
+     * 内包するオブジェクト.
+     */
+    public var innerTween(default, null):Tween;
+    
+    public var easing(get, null):Easing;
+    private function get_easing() return innerTween.easing;
+}

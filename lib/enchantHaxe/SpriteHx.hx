@@ -15,6 +15,7 @@ class SpriteHx extends EntityHx
      */
     public function new(base:Sprite):Void
     {
+        super(base);
         innerSprite = base;
     }
     
@@ -28,7 +29,11 @@ class SpriteHx extends EntityHx
      */
     public var image(get, set):SurfaceHx;
     private function get_image() return new SurfaceHx(innerSprite.image);
-    private function set_image(v) return (innerSprite.image = v.innerSurface);
+    private function set_image(v:SurfaceHx)
+    {
+        innerSprite.image = v.innerSurface;
+        return v;
+    }
     
     /**
      * 表示するフレームのインデックス.
@@ -38,7 +43,7 @@ class SpriteHx extends EntityHx
      * 数値の配列が指定された場合、それらを毎フレーム順に切り替える。
      * ループするが、null値が含まれているとそこでループをストップする。
      */
-    public var frame(get, set):Array<int>;
+    public var frame(get, set):Array<Int>;
     private function get_frame() return innerSprite.frame;
     private function set_frame(v) return (innerSprite.frame = v);
 }
