@@ -1,12 +1,5 @@
 package ;
 
-import enchantHaxe.nineleap.SplashSceneHx;
-import enchantHaxe.SceneHx;
-import enchantHaxe.SpriteHx;
-import enchantHaxe.ui.BarHx;
-import enchantHaxe.ui.ScoreLabelHx;
-import enchantHaxe.ui.TimeLabelHx;
-import enchantHaxe.ui.VirtualMapHx;
 import js.Lib;
 import enchant.EnchantJS;
 import enchant.nineleap.NineLeap;
@@ -14,6 +7,13 @@ import enchant.ui.UI;
 import enchantHaxe.EnchantHx;
 import enchantHaxe.CoreHx;
 import enchantHaxe.EventType;
+import enchantHaxe.SceneHx;
+import enchantHaxe.SpriteHx;
+import enchantHaxe.nineleap.SplashSceneHx;
+import enchantHaxe.ui.BarHx;
+import enchantHaxe.ui.ScoreLabelHx;
+import enchantHaxe.ui.TimeLabelHx;
+import enchantHaxe.ui.VirtualMapHx;
 
 /**
  * ...
@@ -63,7 +63,7 @@ class Main
                 var meshedIcon = board.addChildOnMesh(icon);
                 meshedIcon.mx = i;
                 meshedIcon.my = i;
-                icons.push(icon);
+                icons.push(meshedIcon);
             }
             
             var scene = new SceneHx(new Scene());
@@ -98,8 +98,8 @@ class Main
                     if(game.frame % 20 == 0){
                         for (i in 0...20)
                         {
-                            untyped icons[i].mx = Std.random(20);
-                            untyped icons[i].my = Std.random(20);
+                            icons[i].mx = Std.random(20);
+                            icons[i].my = Std.random(20);
                         }
                     }
                 }

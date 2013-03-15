@@ -18,6 +18,11 @@ class TimelineHx extends EventTargetHx
     {
         super(base);
         innerTimeline = base;
+        queue = new ExternalArray<ActionHx, Action>(
+            function() return innerTimeline.queue,
+            function(v) return new ActionHx(v),
+            function(v) return v.innerAction
+        );
     }
     
     /**
@@ -28,8 +33,7 @@ class TimelineHx extends EventTargetHx
     public var node(get, null):NodeHx;
     private function get_node() return new NodeHx(innerTimeline.node);
     
-    public var queue(get, null):Array<Action>;
-    private function get_queue() return innerTimeline.queue;
+    public var queue(default, null):ExternalArray<ActionHx, Action>;
     
     public var paused(get, null):Bool;
     private function get_paused() return innerTimeline.paused;

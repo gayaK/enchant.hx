@@ -17,6 +17,11 @@ class GroupHx extends NodeHx
     {
         super(base);
         innerGroup = base;
+        childNodes = new ExternalArray<NodeHx, Node>(
+            function() return innerGroup.childNodes,
+            function(v) return new NodeHx(v),
+            function(v) return v.innerNode
+        );
     }
     
     /**
@@ -27,8 +32,7 @@ class GroupHx extends NodeHx
     /**
      * 子のNode.
      */
-    public var childNodes(get, null):Array<Node>;
-    private function get_childNodes() return innerGroup.childNodes; // todo:
+    public var childNodes(default, null):ExternalArray<NodeHx, Node>;
 
     /**
      * 最初の子Node.

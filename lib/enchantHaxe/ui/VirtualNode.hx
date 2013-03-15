@@ -7,10 +7,11 @@ import enchantHaxe.NodeHx;
  * @author gaya_K
  */
 
-class VirtualNode<T:NodeHx>
+class VirtualNode<T:NodeHx> extends NodeHx
 {
     public function new(node:T) 
     {
+        super(node.innerNode);
         innerNodeHx = node;
     }
     

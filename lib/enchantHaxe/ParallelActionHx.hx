@@ -17,6 +17,16 @@ class ParallelActionHx extends ActionHx
     {
         super(base);
         innerParallelAction = base;
+        actions = new ExternalArray<ActionHx, Action>(
+            function() return innerParallelAction.actions,
+            function(v) return new ActionHx(v),
+            function(v) return v.innerAction
+        );
+        endedActions = new ExternalArray<ActionHx, Action>(
+            function() return innerParallelAction.endedActions,
+            function(v) return new ActionHx(v),
+            function(v) return v.innerAction
+        );
     }
     
     /**
@@ -24,9 +34,7 @@ class ParallelActionHx extends ActionHx
      */
     public var innerParallelAction(default, null):ParallelAction;
     
-    public var actions(get, null):Array<Action>;
-    private function get_actions() return innerParallelAction.actions;
+    public var actions(default, null):ExternalArray<ActionHx, Action>;
     
-    public var endedActions(get, null):Array<Action>;
-    private function get_endedActions() return innerParallelAction.endedActions;
+    public var endedActions(default, null):ExternalArray<ActionHx, Action>;
 }

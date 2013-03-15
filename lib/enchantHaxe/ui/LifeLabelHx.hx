@@ -3,6 +3,7 @@ package enchantHaxe.ui;
 import enchant.EnchantJS;
 import enchant.ui.UI;
 import enchantHaxe.GroupHx;
+import enchantHaxe.SpriteHx;
 
 /**
  * ...
@@ -19,6 +20,11 @@ class LifeLabelHx extends GroupHx
     {
         super(base);
         innerLifeLabel = base;
+        heart = new ExternalArray<SpriteHx, Sprite>(
+            function() return innerLifeLabel.heart,
+            function(v) return new SpriteHx(v),
+            function(v) return v.innerSprite
+        );
     }
     
     /**
@@ -30,9 +36,7 @@ class LifeLabelHx extends GroupHx
     private function get_label() return innerLifeLabel.label;
     private function set_label(v) return (innerLifeLabel.label = v);
     
-    public var heart(get, set):Array<Sprite>;
-    private function get_heart() return innerLifeLabel.heart;
-    private function set_heart(v) return (innerLifeLabel.heart = v);
+    public var heart(default, null):ExternalArray<SpriteHx, Sprite>;
 
     /**
      * 残りライフの数
