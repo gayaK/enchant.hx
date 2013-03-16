@@ -1,7 +1,7 @@
 package enchantHaxe;
 
 import enchant.EnchantJS;
-
+using enchantHaxe.EasingType.EasingTypes;
 
 /**
  * ...
@@ -261,9 +261,10 @@ class TimelineHx extends EventTargetHx
      * @param easing イージング関数
      * @return
      */
-    public function fadeTo(opacity:Float, time:Int , ?easing:Easing):TimelineHx
+    public function fadeTo(opacity:Float, time:Int , ?easing:EasingType):TimelineHx
     {
-        innerTimeline.fadeTo(opacity, time, easing);
+        var func = (easing == null) ? null : easing.toFunction();
+        innerTimeline.fadeTo(opacity, time, func);
         return this;
     }
     
@@ -274,9 +275,10 @@ class TimelineHx extends EventTargetHx
      * @param easing イージング関数
      * @return
      */
-    public function fadeIn(time:Int , ?easing:Easing):TimelineHx
+    public function fadeIn(time:Int , ?easing:EasingType):TimelineHx
     {
-        innerTimeline.fadeIn(time, easing);
+        var func = (easing == null) ? null : easing.toFunction();
+        innerTimeline.fadeIn(time, func);
         return this;
     }
     
@@ -287,9 +289,10 @@ class TimelineHx extends EventTargetHx
      * @param easing イージング関数
      * @return
      */
-    public function fadeOut(time:Int , ?easing:Easing):TimelineHx
+    public function fadeOut(time:Int , ?easing:EasingType):TimelineHx
     {
-        innerTimeline.fadeOut(time, easing);
+        var func = (easing == null) ? null : easing.toFunction();
+        innerTimeline.fadeOut(time, func);
         return this;
     }
     
@@ -301,9 +304,10 @@ class TimelineHx extends EventTargetHx
      * @param easing イージング関数
      * @return
      */
-    public function moveTo(x:Float, y:Float, time:Int , ?easing:Easing):TimelineHx
+    public function moveTo(x:Float, y:Float, time:Int , ?easing:EasingType):TimelineHx
     {
-        innerTimeline.moveTo(x, y, time, easing);
+        var func = (easing == null) ? null : easing.toFunction();
+        innerTimeline.moveTo(x, y, time, func);
         return this;
     }
     
@@ -314,9 +318,10 @@ class TimelineHx extends EventTargetHx
      * @param easing
      * @return
      */
-    public function moveX(x:Float, time:Int , ?easing:Easing):TimelineHx
+    public function moveX(x:Float, time:Int , ?easing:EasingType):TimelineHx
     {
-        innerTimeline.moveX(x, time, easing);
+        var func = (easing == null) ? null : easing.toFunction();
+        innerTimeline.moveX(x, time, func);
         return this;
     }
     
@@ -327,9 +332,10 @@ class TimelineHx extends EventTargetHx
      * @param easing
      * @return
      */
-    public function moveY(y:Float, time:Int , ?easing:Easing):TimelineHx
+    public function moveY(y:Float, time:Int , ?easing:EasingType):TimelineHx
     {
-        innerTimeline.moveY(y, time, easing);
+        var func = (easing == null) ? null : easing.toFunction();
+        innerTimeline.moveY(y, time, func);
         return this;
     }
     
@@ -342,9 +348,10 @@ class TimelineHx extends EventTargetHx
      * @param easing
      * @return
      */
-    public function moveBy(x:Float, y:Float, time:Int , ?easing:Easing):TimelineHx
+    public function moveBy(x:Float, y:Float, time:Int , ?easing:EasingType):TimelineHx
     {
-        innerTimeline.moveBy(x, y, time, easing);
+        var func = (easing == null) ? null : easing.toFunction();
+        innerTimeline.moveBy(x, y, time, func);
         return this;
     }
     
@@ -388,9 +395,10 @@ class TimelineHx extends EventTargetHx
      * @param easing
      * @return
      */
-    public function scaleTo(scale:Float , time:Int , ?easing:Easing):TimelineHx
+    public function scaleTo(scale:Float , time:Int , ?easing:EasingType):TimelineHx
     {
-        innerTimeline.scaleTo(scale, time, easing);
+        var func = (easing == null) ? null : easing.toFunction();
+        innerTimeline.scaleTo(scale, time, func);
         return this;
     }
     
@@ -402,9 +410,10 @@ class TimelineHx extends EventTargetHx
      * @param easing
      * @return
      */
-    public function scaleBy(scale:Float, time:Int , ?easing:Easing):TimelineHx
+    public function scaleBy(scale:Float, time:Int , ?easing:EasingType):TimelineHx
     {
-        innerTimeline.scaleBy(scale, time, easing);
+        var func = (easing == null) ? null : easing.toFunction();
+        innerTimeline.scaleBy(scale, time, func);
         return this;
     }
     
@@ -415,9 +424,10 @@ class TimelineHx extends EventTargetHx
      * @param easing イージング関数
      * @return
      */
-    public function rotateTo(time:Int , ?easing:Easing):TimelineHx
+    public function rotateTo(time:Int , ?easing:EasingType):TimelineHx
     {
-        innerTimeline.rotateTo(time, easing);
+        var func = (easing == null) ? null : easing.toFunction();
+        innerTimeline.rotateTo(time, func);
         return this;
     }
     
@@ -429,9 +439,10 @@ class TimelineHx extends EventTargetHx
      * @param easing イージング関数
      * @return
      */
-    public function rotateBy(time:Int , ?easing:Easing):TimelineHx
+    public function rotateBy(time:Int , ?easing:EasingType):TimelineHx
     {
-        innerTimeline.rotateBy(time, easing);
+        var func = (easing == null) ? null : easing.toFunction();
+        innerTimeline.rotateBy(time, func);
         return this;
     }
 }

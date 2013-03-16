@@ -1,51 +1,53 @@
 package enchantHaxe;
 
+import enchant.EnchantJS;
+
 /**
  * ...
  * @author gaya_K
  */
 
-class EasingType
+enum EasingType
 {
-    LINEAR,
-    SWING,
-    QUAD_EASEIN,
-    QUAD_EASEOUT,
-    QUAD_EASEINOUT,
-    CUBIC_EASEIN,
-    CUBIC_EASEOUT,
-    CUBIC_EASEINOUT,
-    QUART_EASEIN,
-    QUART_EASEOUT,
-    QUART_EASEINOUT,
-    QUINT_EASEIN,
-    QUINT_EASEOUT,
-    QUINT_EASEINOUT,
-    SIN_EASEIN,
-    SIN_EASEOUT,
-    SIN_EASEINOUT,
-    CIRC_EASEIN,
-    CIRC_EASEOUT,
-    CIRC_EASEINOUT,
-    ELASTIC_EASEIN,
-    ELASTIC_EASEOUT,
-    ELASTIC_EASEINOUT,
-    BOUNCE_EASEOUT,
-    BOUNCE_EASEIN,
-    BOUNCE_EASEINOUT,
-    BACK_EASEIN,
-    BACK_EASEOUT,
-    BACK_EASEINOUT,
-    EXPO_EASEIN,
-    EXPO_EASEOUT,
-    EXPO_EASEINOUT
+    LINEAR;
+    SWING;
+    QUAD_EASEIN;
+    QUAD_EASEOUT;
+    QUAD_EASEINOUT;
+    CUBIC_EASEIN;
+    CUBIC_EASEOUT;
+    CUBIC_EASEINOUT;
+    QUART_EASEIN;
+    QUART_EASEOUT;
+    QUART_EASEINOUT;
+    QUINT_EASEIN;
+    QUINT_EASEOUT;
+    QUINT_EASEINOUT;
+    SIN_EASEIN;
+    SIN_EASEOUT;
+    SIN_EASEINOUT;
+    CIRC_EASEIN;
+    CIRC_EASEOUT;
+    CIRC_EASEINOUT;
+    ELASTIC_EASEIN;
+    ELASTIC_EASEOUT;
+    ELASTIC_EASEINOUT;
+    BOUNCE_EASEOUT;
+    BOUNCE_EASEIN;
+    BOUNCE_EASEINOUT;
+    BACK_EASEIN;
+    BACK_EASEOUT;
+    BACK_EASEINOUT;
+    EXPO_EASEIN;
+    EXPO_EASEOUT;
+    EXPO_EASEINOUT;
 }
 
 class EasingTypes
 {
-    public static function toString(v:EasingType):Void 
+    public static function toFunction(v:EasingType):EasingFunction
     {
-        return switch (v) 
+        var key = switch (v) 
         {
             case EasingType.LINEAR:
                 "LINEAR";
@@ -111,8 +113,8 @@ class EasingTypes
                 "EXPO_EASEOUT";
             case EasingType.EXPO_EASEINOUT:
                 "EXPO_EASEINOUT";  
-            default:
-                throw "Illegal value.";
         }
+        
+        return untyped enchant.Easing[key];
     }
 }

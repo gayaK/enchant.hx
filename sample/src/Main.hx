@@ -41,6 +41,9 @@ class Main
             sprite.y = 160;
             sprite.frame = [0, 0, 1, 1, 2, 2, 3, 3];
             sprite.image = game.assets.get("chara1.png");
+            sprite.tl
+                .fadeOut(1)
+                .fadeIn(50);
             
             var scoreLabel = new ScoreLabelHx(new ScoreLabel(10, 0));
             

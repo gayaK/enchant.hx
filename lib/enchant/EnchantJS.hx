@@ -441,7 +441,7 @@ extern class ActionEventTarget extends EventTarget
     public function new():Void;
 }
 
-typedef  Easing = Float->Float->Float->Float->Float;
+typedef EasingFunction = Float->Float->Float->Float->Float;
 
 extern class Timeline extends EventTarget
 {
@@ -472,20 +472,20 @@ extern class Timeline extends EventTarget
     public function repeat(func:Void->Void, time:Int):Timeline;
     public function and():Timeline;
     public function waitUntil(func:Void->Bool):Timeline;
-    public function fadeTo(opacity:Float, time:Int , ?easing:Easing):Timeline;
-    public function fadeIn(time:Int , ?easing:Easing):Timeline;
-    public function fadeOut(time:Int , ?easing:Easing):Timeline;
-    public function moveTo(x:Float, y:Float, time:Int , ?easing:Easing):Timeline;
-    public function moveX(x:Float, time:Int , ?easing:Easing):Timeline;
-    public function moveY(y:Float, time:Int , ?easing:Easing):Timeline;
-    public function moveBy(x:Float, y:Float, time:Int , ?easing:Easing):Timeline;
+    public function fadeTo(opacity:Float, time:Int , ?easing:EasingFunction):Timeline;
+    public function fadeIn(time:Int , ?easing:EasingFunction):Timeline;
+    public function fadeOut(time:Int , ?easing:EasingFunction):Timeline;
+    public function moveTo(x:Float, y:Float, time:Int , ?easing:EasingFunction):Timeline;
+    public function moveX(x:Float, time:Int , ?easing:EasingFunction):Timeline;
+    public function moveY(y:Float, time:Int , ?easing:EasingFunction):Timeline;
+    public function moveBy(x:Float, y:Float, time:Int , ?easing:EasingFunction):Timeline;
     public function hide():Timeline;
     public function show():Timeline;
     public function removeFromScene():Timeline;
-    public function scaleTo(scale:Float , time:Int , ?easing:Easing):Timeline;
-    public function scaleBy(scale:Float,time:Int , ?easing:Easing):Timeline;
-    public function rotateTo(time:Int , ?easing:Easing):Timeline;
-    public function rotateBy(time:Int , ?easing:Easing):Timeline;
+    public function scaleTo(scale:Float , time:Int , ?easing:EasingFunction):Timeline;
+    public function scaleBy(scale:Float,time:Int , ?easing:EasingFunction):Timeline;
+    public function rotateTo(time:Int , ?easing:EasingFunction):Timeline;
+    public function rotateBy(time:Int , ?easing:EasingFunction):Timeline;
 }
 
 extern class Action extends EventTarget
@@ -510,6 +510,6 @@ extern class Tween extends Action
 {
     public function new(param:Dynamic):Void;    // todo
     
-    public var easing:Easing;
+    public var easing:EasingFunction;
 }
 
