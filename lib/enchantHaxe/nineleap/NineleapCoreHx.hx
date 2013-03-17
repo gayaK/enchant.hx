@@ -28,10 +28,10 @@ class NineleapCoreHx extends CoreHx
     public var innerNineleapCore(default, null):Core;
     
     public var startScene(get, null):SceneHx;
-    private function get_startScene() return innerNineleapCore.startScene;
+    private function get_startScene() return new SceneHx(innerNineleapCore.startScene);
     
     public var endScene(get, null):SceneHx;
-    private function get_endScene() return innerNineleapCore.endScene;
+    private function get_endScene() return new SceneHx(innerNineleapCore.endScene);
     
     public var scoreQueue(get, null):Bool;
     private function get_scoreQueue() return innerNineleapCore.scoreQueue;
@@ -44,10 +44,8 @@ class NineleapCoreHx extends CoreHx
         innerNineleapCore.loadImage(src, callBack);
     }
     
-    public function end(score:String, result:String, img:SurfaceHx):Void;
+    public function end(score:String, result:String, img:SurfaceHx):Void
     {
-        innerNineleapCore.end(score, result, img);
-    }
-        
+        innerNineleapCore.end(score, result, img.innerSurface);
     }
 }
