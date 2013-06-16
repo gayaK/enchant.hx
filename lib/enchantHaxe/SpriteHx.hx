@@ -18,12 +18,12 @@ class SpriteHx extends EntityHx
         super(base);
         innerSprite = base;
     }
-    
+
     /**
      * 内包するオブジェクト.
      */
     public var innerSprite(default, null):Sprite;
-    
+
     /**
      * Spriteで表示する画像.
      */
@@ -34,7 +34,7 @@ class SpriteHx extends EntityHx
         innerSprite.image = v.innerSurface;
         return v;
     }
-    
+
     /**
      * 表示するフレームのインデックス.
      * Spriteと同じ横幅と高さを持ったフレームが{@link enchant.Sprite#image}プロパティの画像に左上から順に
@@ -43,7 +43,12 @@ class SpriteHx extends EntityHx
      * 数値の配列が指定された場合、それらを毎フレーム順に切り替える。
      * ループするが、null値が含まれているとそこでループをストップする。
      */
-    public var frame(get, set):Array<Int>;
+    public var frame(get, set):Int;
     private function get_frame() return innerSprite.frame;
     private function set_frame(v) return (innerSprite.frame = v);
+
+    public function setFrames(frames:Array<Int>)
+    {
+        untyped innerSprite.frame = frames;
+    }
 }

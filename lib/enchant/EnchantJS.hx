@@ -17,53 +17,53 @@ extern class ENV
      * Version of enchant.js
      */
     public static var VERSION(default, null):String;
-    
+
     /**
      * The CSS vendor prefix of the current browser.
      */
     public static var VENDOR_PREFIX(default, null):String;
-    
+
     /**
      * Determines if the current browser supports touch.
      */
     public static var TOUCH_ENABLED(default, null):Bool;
-    
+
     /**
      * Determines if the current browser is an iPhone with a retina display.
      */
     public static var RETINA_DISPLAY(default, null):Bool;
-    
+
     /**
-     * Determines if for current browser Flash should be used to play 
+     * Determines if for current browser Flash should be used to play
      * sound instead of the native audio class.
      */
     public static var USE_FLASH_SOUND(default, null):Bool;
-    
+
     /**
      * If click/touch event occure for these tags the setPreventDefault() method will not be called.
      */
     public static var USE_DEFAULT_EVENT_TAGS(default, null):Array<String>;
-    
+
     /**
      * If click/touch event occure for these tags the setPreventDefault() method will not be called.
      */
     public static var CANVAS_DRAWING_METHODS(default, null):Array<String>;
-    
+
     /**
      * Keybind Table.
      * You can use 'left', 'up', 'right', 'down', 'a', 'b' for preset event.
      */
     public static var KEY_BIND_TABLE(default, null):Dynamic;    // todo:
-    
+
     public static var PREVENT_DEFAULT_KEY_CODES(default, null):Array<Int>;
-    
+
     public static var SOUND_ENABLED_ON_MOBILE_SAFARI(default, null):Bool;
-    
+
     /**
      * Determines if WebAudioAPI is enabled. (true: use WebAudioAPI instead of Audio element if possible)
      */
     public static var USE_WEBAUDIO(default, null):Bool;
-    
+
     /**
      * Determines if animation feature is enabled. (true: Timeline instance will be generated in new Node)
      */
@@ -80,7 +80,7 @@ extern class Event
     public var y:Int;
     public var localX:Int;
     public var localY:Int;
-    
+
     public static var LOAD:String;
     public static var PROGRESS:String;
     public static var ENTER_FRAME:String;
@@ -124,7 +124,7 @@ extern class Event
 extern class Core extends EventTarget
 {
     public function new(width:Float, height:Float):Void;
-    
+
     public static var instance:Core;
 
     public var width:Float;
@@ -140,11 +140,11 @@ extern class Core extends EventTarget
     public var loadingScene:Scene;
     public var input:Dynamic/*Hash<Bool>*/;
     public var onload:Void->Void;
-    
+
     public var actualFps(default, null):Int;
 
     public static function findExt(path:String):String;
-    
+
     public function preload(assets:Array<String>):Void;
     public function load(src:String, callBack:Void->Void):Void;
     public function start():Void;
@@ -168,7 +168,7 @@ extern class Game extends Core
 
 extern class EventTarget
 {
-    public function new():Void; 
+    public function new():Void;
 
     public function addEventListener(type:String, listener:Event->Void):Void;
     public function removeEventListener(type:String, listener:Event->Void):Void;
@@ -179,12 +179,12 @@ extern class EventTarget
 extern class Node extends EventTarget
 {
     public function new():Void;
-    
+
     public var age:Int;
     public var parentNode:Group;
     public var scene:Scene;
     public var tl:Timeline;
-    
+
     public var x(default, default):Float;
     public var y(default, default):Float;
 
@@ -196,7 +196,7 @@ extern class Node extends EventTarget
 extern class Entity extends Node
 {
     public function new():Void;
-    
+
     public var compositeOperation:Dynamic;  // todo:
     public var buttonMode:String;
     public var buttonPressed:Bool;
@@ -212,7 +212,7 @@ extern class Entity extends Node
     public var rotation(default, default):Float;
     public var originX(default, default):Float;
     public var originY(default, default):Float;
-    
+
     public function intersect(other:{x:Float, y:Float, width:Float, height:Float}):Bool;
     public function within(other:{x:Float, y:Float, width:Float, height:Float}, ?distance:Float):Bool;
     public function scale(x:Float, y:Float):Void;
@@ -224,20 +224,20 @@ extern class Entity extends Node
 extern class Sprite extends Entity
 {
     public function new(width:Int, height:Int):Void;
-    
+
     public var image(default, default):Surface;
-    public var frame(default, default):Array<Int>;
+    public var frame(default, default):Int;
 }
 
 extern class Label extends Entity
 {
     public function new(text:String):Void;
-    
+
     public var text:String;
     public var textAlign:String;
     public var font:String;
     public var color:String;
-    
+
     public function cvsRender(ctx:Dynamic):Void;    // todo:
     public function domRender(element:Dynamic):Void;    // todo:
     public function detectRender(ctx:Dynamic):Void;     // todo:
@@ -247,14 +247,14 @@ extern class Label extends Entity
 extern class Map extends Entity
 {
     public function new(tileWidth:Float, tileHeight:Float):Void;
-    
+
     public var collisionData:Array<Array<Int>>;
 
     public var image(default, default):Surface;
     public var tileWidth(default, default):Float;
     public var tileHeight(default, default):Float;
-    
-    @:overload(function(data:Array<Array<Array<Int>>>):Void{}) 
+
+    @:overload(function(data:Array<Array<Array<Int>>>):Void{})
     public function loadData(data:Array<Array<Int>>):Void;
     public function checkTile(x:Float, y:Float):Dynamic;    // todo:
     public function hitTest(x:Float, y:Float):Bool;
@@ -265,7 +265,7 @@ extern class Map extends Entity
 extern class Group extends Node
 {
     public function new():Void;
-    
+
     public var childNodes:Array<Node>;
 
     public var firstChild(default, null):Node;
@@ -284,9 +284,9 @@ extern class Group extends Node
 extern class Matrix
 {
     public function new():Void;
-    
+
     public static var instance:Matrix;
-    
+
     public function reset():Void;
     public function makeTransformMatrix(node:Node, dest:Matrix):Void;
     public function multiply(m1:Matrix, m2:Matrix, dest:Matrix):Void;
@@ -296,12 +296,12 @@ extern class Matrix
 extern class DetectColorManager
 {
     public function new(reso:Int, max:Int):Void;
-    
+
     public var reference:Array<Sprite>;
     public var colorResolution:Int;
     public var max:Int;
     public var capacity:Int;
-    
+
     public function attachDetectColor(sprite:Sprite):Array<Int>;
     public function detachDetectColor(sprite:Sprite):Void;
     public function getSpriteByColor(color:Array<Int>):Sprite;
@@ -309,9 +309,9 @@ extern class DetectColorManager
 
 extern class DomManager /*implements IDomMangager*/
 {
-    @:overload(function(node:Node, elementDefinition:HtmlElement):Void{}) 
+    @:overload(function(node:Node, elementDefinition:HtmlElement):Void{})
     public function new(node:Node, elementDefinition:String):Void;
-    
+
     public var layer:DomLayer;
     public var targetNode:Node;
     public var element:HtmlElement;
@@ -331,7 +331,7 @@ extern class DomManager /*implements IDomMangager*/
 extern class DomlessManager /*implements IDomMangager*/
 {
     public function new(node:Node):Void;
-    
+
     public function getDomElement():Dynamic/*HTMLElement*/;
     public function getDomElementAsNext():Dynamic/*HTMLElement*/;
     public function getNextManager(manager:DomManager):DomManager;
@@ -340,13 +340,13 @@ extern class DomlessManager /*implements IDomMangager*/
     public function removeManager(childManager:DomManager):Void;
     public function setLayer(layer:DomLayer):Void;
     public function render(inheritMat:Matrix):Void;
-    public function remove():Void;    
+    public function remove():Void;
 }
 
 extern class DomLayer extends Group
 {
     public function new():Void;
-    
+
     public var width:Float;
     public var height:Float;
 }
@@ -354,7 +354,7 @@ extern class DomLayer extends Group
 extern class CanvasLayer extends Group
 {
     public function new():Void;
-    
+
     public var width:Float;
     public var height:Float;
     public var context:CanvasRenderingContext2D;
@@ -363,7 +363,7 @@ extern class CanvasLayer extends Group
 extern class Scene extends Group
 {
     public function new():Void;
-    
+
     public var width:Float;
     public var height:Float;
 
@@ -383,11 +383,11 @@ extern class DOMScene extends Scene
 extern class Surface extends EventTarget
 {
     public function new(widht:Float, height:Float):Void;
-    
+
     public var width:Float;
     public var height:Float;
     public var context:CanvasRenderingContext2D;
-    
+
     public static function load(src:String, callBack:Void->Void):Void;
 
     public function getPixel(x:Int , y:Int):Array<Int>;
@@ -401,14 +401,14 @@ extern class Surface extends EventTarget
 extern class DOMSound extends EventTarget
 {
     public function new():Void;
-    
+
     public var furation:Int;
-    
+
     public var currentTime(default, default):Int;
     public var vollume(default, default):Float;
-    
+
     public static function load(src:String, type:String, callBack:Void->Void):Void;
-    
+
     public function play():Void;
     public function pause():Void;
     public function stop():Void;
@@ -418,22 +418,22 @@ extern class DOMSound extends EventTarget
 extern class WebAudioSound extends EventTarget
 {
     public function new():Void;
-    
+
     public var src:Dynamic;     // todo:
     public var buffer:Dynamic;  // todo:
     public var connectTarget:Dynamic;   // todo:
-    
+
     public var dulation(default, null):Float;
     public var vollume(default, default):Float;
     public var currentTime(default, default):Int;
-    
+
     public static function load(src:String, type:String, callBack:Void->Void):Void;
 
     public function play(dup:Dynamic):Void; // todo:
     public function pause():Void;
     public function stop():Void;
     public function close():Void;
-    
+
 }
 
 extern class ActionEventTarget extends EventTarget
@@ -446,7 +446,7 @@ typedef EasingFunction = Float->Float->Float->Float->Float;
 extern class Timeline extends EventTarget
 {
     public function new(node:Node):Void;
-    
+
     public var node:Node;
     public var queue:Array<Action>;
     public var paused:Bool;
@@ -491,7 +491,7 @@ extern class Timeline extends EventTarget
 extern class Action extends EventTarget
 {
     public function new(param:Dynamic):Void;    // todo
-    
+
     public var time:Int;
     public var frame:Int;
     public var timeline:Timeline;
@@ -501,7 +501,7 @@ extern class Action extends EventTarget
 extern class ParallelAction extends Action
 {
     public function new(param:Dynamic):Void;    // todo
-    
+
     public var actions:Array<Action>;
     public var endedActions:Array<Action>;
 }
@@ -509,7 +509,7 @@ extern class ParallelAction extends Action
 extern class Tween extends Action
 {
     public function new(param:Dynamic):Void;    // todo
-    
+
     public var easing:EasingFunction;
 }
 
