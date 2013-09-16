@@ -1,4 +1,4 @@
-package ;
+package enchantHaxe;
 
 /**
  * ...
@@ -96,17 +96,5 @@ class ExternalHash<TVal, TSrc>
         }
         s.add("}");
         return s.toString();
-    }
-}
-
-class ExternalHashSimple<T> extends ExternalHash<T,T>
-{
-    public function new(hashGetter:Void->Dynamic):Void 
-    {
-        super(
-            hashGetter,
-            function (x) return x,
-            function (x) return x
-        );
     }
 }

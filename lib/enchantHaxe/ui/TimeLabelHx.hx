@@ -1,6 +1,6 @@
 package enchantHaxe.ui;
 
-import enchant.ui.UI;
+import enchant.ui.*;
 
 /**
  * ...

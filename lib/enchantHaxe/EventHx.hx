@@ -1,7 +1,7 @@
 package enchantHaxe;
 
-import enchant.EnchantJS;
-import enchantHaxe.EventTargetHx;
+import enchant.*;
+import enchantHaxe.*;
 
 using enchantHaxe.EventTypes;
 

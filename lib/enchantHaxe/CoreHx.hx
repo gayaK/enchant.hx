@@ -1,7 +1,6 @@
 package enchantHaxe;
 
-import enchant.EnchantJS;
-import ExternalHash;
+import enchant.*;
 
 /**
  * ...

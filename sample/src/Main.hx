@@ -1,9 +1,9 @@
 package ;
 
 import js.Lib;
-import enchant.EnchantJS;
-import enchant.nineleap.NineLeap;
-import enchant.ui.UI;
+import enchant.*;
+import enchant.ui.*;
+import enchant.nineleap.*;
 import enchantHaxe.*;
 import enchantHaxe.ui.*;
 import enchantHaxe.nineleap.*;
@@ -53,7 +53,7 @@ class Main
 
             var icons = [];
             for (i in 0...20)
-			{
+            {
                 var icon = new SpriteHx(new Sprite(16, 16));
                 icon.frame = 10;
                 icon.image = game.assets.get("icon0.png");
@@ -87,16 +87,16 @@ class Main
                 function (e):Void
                 {
                     if (bar.value > 0)
-					{
+                    {
                         bar.value--;
                     }
-					else
-					{
+                    else
+                    {
                         bar.value = bar.maxvalue;
                     }
                     
                     if (game.frame % 20 == 0)
-					{
+                    {
                         for (i in 0...20)
                         {
                             icons[i].mx = Std.random(20);

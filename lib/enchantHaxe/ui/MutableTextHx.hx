@@ -1,7 +1,7 @@
 package enchantHaxe.ui;
 
-import enchant.ui.UI;
-import enchantHaxe.SpriteHx;
+import enchant.ui.*;
+import enchantHaxe.*;
 
 /**
  * ...

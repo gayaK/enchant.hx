@@ -1,11 +1,14 @@
 package enchantHaxe;
 
-import enchant.EnchantJS;
+import enchant.*;
 
 /**
  * ...
  * @author gaya_K
  */
+
+typedef EasingFunction = Float->Float->Float->Float->Float;
+
 class EasingTypes
 {
     public static function toFunction(v:EasingType):EasingFunction

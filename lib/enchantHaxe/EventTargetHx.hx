@@ -1,6 +1,6 @@
 package enchantHaxe;
 
-//import enchant.EnchantJS;
+//import enchant.*;
 using enchantHaxe.EventTypes;
 
 /**
@@ -14,19 +14,19 @@ class EventTargetHx
      * コンストラクタ.
      * @param base ラップするオブジェクト.
      */
-    public function new(base:enchant.EnchantJS.EventTarget):Void
+    public function new(base:enchant.EventTarget):Void
     {
         innerEventTarget = base;
-		//listenerMap = new Map<EventHx->Void, enchant.EnchantJS.Event->Void>();
+        //listenerMap = new Map<EventHx->Void, enchant.EnchantJS.Event->Void>();
     }
     
     /**
      * 内包するオブジェクト.
      */
-    public var innerEventTarget(default, null):enchant.EnchantJS.EventTarget;
-	
-	private var listenerMap:Map<EventHx->Void, enchant.EnchantJS.Event->Void>;
-	
+    public var innerEventTarget(default, null):enchant.EventTarget;
+    
+    private var listenerMap:Map<EventHx->Void, enchant.Event->Void>;
+    
     /**
      * イベントリスナを追加する.
      * @param type イベントのタイプ.
@@ -34,15 +34,15 @@ class EventTargetHx
      */
     public function addEventListener(type:EventType, listenerHx:EventHx->Void):Void
     {
-		var listener = function (e:enchant.EnchantJS.Event):Void
-		{
-			listenerHx(new EventHx(e));
-		};
-		//listenerMap.set(listenerHx, listener);
+        var listener = function (e:enchant.Event):Void
+        {
+            listenerHx(new EventHx(e));
+        };
+        //listenerMap.set(listenerHx, listener);
 
         innerEventTarget.addEventListener(
             type.toString(),
-			listener
+            listener
         );
     }
     
@@ -53,7 +53,7 @@ class EventTargetHx
      */
     public function removeEventListener(type:EventType, listenerHx:EventHx->Void):Void
     {
-		// var listener = listenerMap.get(listenerHx);
+        // var listener = listenerMap.get(listenerHx);
         // innerEventTarget.removeEventListener(EventTypes.toString(type), listener);
         throw "this method is not supported yet.";
     }
@@ -71,7 +71,7 @@ class EventTargetHx
      * イベントを発行する.
      * @param e 発行するイベント.
      */
-    public function dispatchEvent(e:enchant.EnchantJS.Event):Void
+    public function dispatchEvent(e:enchant.Event):Void
     {
         innerEventTarget.dispatchEvent(e);
     }

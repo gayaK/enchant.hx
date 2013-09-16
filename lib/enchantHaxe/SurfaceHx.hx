@@ -1,7 +1,7 @@
 package enchantHaxe;
 
-import enchant.EnchantJS;
-import js.html.CanvasRenderingContext2D;
+import enchant.*;
+import js.html.*;
 
 /**
  * ...

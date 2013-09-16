@@ -1,6 +1,6 @@
 package enchantHaxe.ui;
 
-import enchantHaxe.NodeHx;
+import enchantHaxe.*;
 
 /**
  * ...

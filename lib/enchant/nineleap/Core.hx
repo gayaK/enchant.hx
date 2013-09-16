@@ -1,13 +1,13 @@
 package enchant.nineleap;
 
-import enchant.EnchantJS;
+import enchant.*;
 
 /**
  * ...
  * @author gaya_K
  */
 
-extern class Core extends enchant.EnchantJS.Core
+extern class Core extends enchant.Core
 {
     public function new(width:Float, height:Float):Void;
     
@@ -18,11 +18,4 @@ extern class Core extends enchant.EnchantJS.Core
     
     public function loadImage(src:String, callBack:Void->Void):Void;
     public function end(score:String, result:String, img:Surface):Void;
-}
- 
-extern class SplashScene extends Scene
-{
-    public function new():Void;
-
-    public var image(default, default):Surface;
 }

@@ -1,8 +1,7 @@
 package enchantHaxe.nineleap;
 
-import enchant.nineleap.NineLeap;
-import enchantHaxe.SceneHx;
-import enchantHaxe.SurfaceHx;
+import enchant.nineleap.*;
+import enchantHaxe.*;
 
 /**
  * ...
