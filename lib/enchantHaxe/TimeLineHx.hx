@@ -1,7 +1,7 @@
 package enchantHaxe;
 
 import enchant.EnchantJS;
-using enchantHaxe.EasingType.EasingTypes;
+using enchantHaxe.EasingTypes;
 
 /**
  * ...

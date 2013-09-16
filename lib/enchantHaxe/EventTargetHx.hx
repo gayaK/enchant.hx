@@ -1,8 +1,7 @@
 package enchantHaxe;
 
-import enchant.EnchantJS;
-
-using enchantHaxe.EventType.EventTypes;
+//import enchant.EnchantJS;
+using enchantHaxe.EventTypes;
 
 /**
  * ...
@@ -15,29 +14,35 @@ class EventTargetHx
      * コンストラクタ.
      * @param base ラップするオブジェクト.
      */
-    public function new(base:EventTarget):Void
+    public function new(base:enchant.EnchantJS.EventTarget):Void
     {
         innerEventTarget = base;
+		//listenerMap = new Map<EventHx->Void, enchant.EnchantJS.Event->Void>();
     }
     
     /**
      * 内包するオブジェクト.
      */
-    public var innerEventTarget(default, null):EventTarget;
-
+    public var innerEventTarget(default, null):enchant.EnchantJS.EventTarget;
+	
+	private var listenerMap:Map<EventHx->Void, enchant.EnchantJS.Event->Void>;
+	
     /**
      * イベントリスナを追加する.
      * @param type イベントのタイプ.
-     * @param listener 追加するイベントリスナ.
+     * @param listenerEx 追加するイベントリスナ.
      */
-    public function addEventListener(type:EventType, listener:EventHx->Void):Void
+    public function addEventListener(type:EventType, listenerHx:EventHx->Void):Void
     {
+		var listener = function (e:enchant.EnchantJS.Event):Void
+		{
+			listenerHx(new EventHx(e));
+		};
+		//listenerMap.set(listenerHx, listener);
+
         innerEventTarget.addEventListener(
             type.toString(),
-            function (e:Event):Void 
-            {
-                listener(new EventHx(e));
-            }
+			listener
         );
     }
     
@@ -46,10 +51,11 @@ class EventTargetHx
      * @param type イベントのタイプ.
      * @param listener 削除するイベントリスナ.
      */
-    public function removeEventListener(type:EventType, listener:Event->Void):Void
+    public function removeEventListener(type:EventType, listenerHx:EventHx->Void):Void
     {
+		// var listener = listenerMap.get(listenerHx);
+        // innerEventTarget.removeEventListener(EventTypes.toString(type), listener);
         throw "this method is not supported yet.";
-        //innerEventTarget.removeEventListener(EventTypes.toString(type), listener);
     }
     
     /**
@@ -65,7 +71,7 @@ class EventTargetHx
      * イベントを発行する.
      * @param e 発行するイベント.
      */
-    public function dispatchEvent(e:Event):Void
+    public function dispatchEvent(e:enchant.EnchantJS.Event):Void
     {
         innerEventTarget.dispatchEvent(e);
     }

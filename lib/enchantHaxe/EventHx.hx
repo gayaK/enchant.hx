@@ -3,7 +3,7 @@ package enchantHaxe;
 import enchant.EnchantJS;
 import enchantHaxe.EventTargetHx;
 
-using enchantHaxe.EventType.EventTypes;
+using enchantHaxe.EventTypes;
 
 /**
  * ...
