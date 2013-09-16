@@ -4,16 +4,9 @@ import js.Lib;
 import enchant.EnchantJS;
 import enchant.nineleap.NineLeap;
 import enchant.ui.UI;
-import enchantHaxe.EnchantHx;
-import enchantHaxe.CoreHx;
-import enchantHaxe.EventType;
-import enchantHaxe.SceneHx;
-import enchantHaxe.SpriteHx;
-import enchantHaxe.nineleap.SplashSceneHx;
-import enchantHaxe.ui.BarHx;
-import enchantHaxe.ui.ScoreLabelHx;
-import enchantHaxe.ui.TimeLabelHx;
-import enchantHaxe.ui.VirtualMapHx;
+import enchantHaxe.*;
+import enchantHaxe.ui.*;
+import enchantHaxe.nineleap.*;
 
 /**
  * ...
@@ -39,7 +32,7 @@ class Main
             var sprite = new SpriteHx(new Sprite(32, 32));
             sprite.x = 160;
             sprite.y = 160;
-            sprite.frame = [0, 0, 1, 1, 2, 2, 3, 3];
+            sprite.setFrames([0, 0, 1, 1, 2, 2, 3, 3]);
             sprite.image = game.assets.get("chara1.png");
             sprite.tl
                 .fadeOut(1)
@@ -59,9 +52,10 @@ class Main
             board.height = 320;
 
             var icons = [];
-            for(i in 0...20){
+            for (i in 0...20)
+			{
                 var icon = new SpriteHx(new Sprite(16, 16));
-                icon.frame = [10];
+                icon.frame = 10;
                 icon.image = game.assets.get("icon0.png");
                 var meshedIcon = board.addChildOnMesh(icon);
                 meshedIcon.mx = i;
@@ -92,13 +86,17 @@ class Main
                 EventType.ENTER_FRAME,
                 function (e):Void
                 {
-                    if(bar.value > 0){
+                    if (bar.value > 0)
+					{
                         bar.value--;
-                    }else {
+                    }
+					else
+					{
                         bar.value = bar.maxvalue;
                     }
                     
-                    if(game.frame % 20 == 0){
+                    if (game.frame % 20 == 0)
+					{
                         for (i in 0...20)
                         {
                             icons[i].mx = Std.random(20);

@@ -1,0 +1,4 @@
+-cp src
+-cp ../lib
+-js bin/EnchantHxSample.js
+-main Main
