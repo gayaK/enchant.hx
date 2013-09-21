@@ -29,28 +29,28 @@ class MapHx extends EntityHx
      */
     public var collisionData(get, set):Array<Array<Int>>;
     private function get_collisionData() return innerMap.collisionData;
-    private function set_collisionData() return (innerMap.collisionData = v);
+    private function set_collisionData(v) return (innerMap.collisionData = v);
 
     /**
      * Mapで表示するタイルセット画像.
      */
     public var image(get, set):Surface;
     private function get_image() return innerMap.image;
-    private function set_image() return (innerMap.image = v);
+    private function set_image(v) return (innerMap.image = v);
     
     /**
      * Mapのタイルの横幅.
      */
     public var tileWidth(get, set):Float;
     private function get_tileWidth() return innerMap.tileWidth;
-    private function set_tileWidth() return (innerMap.tileWidth = v);
+    private function set_tileWidth(v) return (innerMap.tileWidth = v);
 
     /**
      * Mapのタイルの高さ.
      */
     public var tileHeight(get, set):Float;
     private function get_tileHeight() return innerMap.tileHeight;
-    private function set_tileHeight() return (innerMap.tileHeight = v);
+    private function set_tileHeight(v) return (innerMap.tileHeight = v);
 
     /**
      * データを設定する.

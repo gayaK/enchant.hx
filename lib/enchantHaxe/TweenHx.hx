@@ -24,6 +24,6 @@ class TweenHx extends ActionHx
      */
     public var innerTween(default, null):Tween;
     
-    public var easing(get, null):Easing;
+    public var easing(get, null):EasingFunction;
     private function get_easing() return innerTween.easing;
 }

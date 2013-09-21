@@ -1,6 +1,7 @@
 package enchantHaxe;
 
 import enchant.*;
+using enchantHaxe.HxConverter;
 
 /**
  * ...
@@ -31,8 +32,8 @@ class ActionHx extends EventTargetHx
     private function get_frame() return innerAction.frame;
     
     public var timeline(get, null):TimelineHx;
-    private function get_timeline() return new TimelineHx(innerAction.timeline);
+    private function get_timeline() return innerAction.timeline.toTimelineHx();
     
     public var node(get, null):NodeHx;
-    private function get_node() return new NodeHx(innerAction.node);
+    private function get_node() return innerAction.node.toNodeHx();
 }

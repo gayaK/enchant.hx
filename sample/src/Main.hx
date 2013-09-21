@@ -8,6 +8,8 @@ import enchantHaxe.*;
 import enchantHaxe.ui.*;
 import enchantHaxe.nineleap.*;
 
+using enchantHaxe.HxConverter;
+
 /**
  * ...
  * @author pon_zu
@@ -20,16 +22,16 @@ class Main
         // JavaScript の enchant(); に相当
         EnchantHx.exportAll();
         
-        var game = new CoreHx(new Core(320,320));
+        var game = new enchant.nineleap.Core(320,320).toNineleapCoreHx();
         game.fps = 15;
         game.preload(["chara1.png", "icon0.png"]);
         
         game.onload = function ():Void 
         {
-            var splashScene = new SplashSceneHx(new SplashScene());
+            var splashScene = new SplashScene().toSplashSceneHx();
             game.pushScene(splashScene);
             
-            var sprite = new SpriteHx(new Sprite(32, 32));
+            var sprite = new Sprite(32, 32).toSpriteHx();
             sprite.x = 160;
             sprite.y = 160;
             sprite.setFrames([0, 0, 1, 1, 2, 2, 3, 3]);
@@ -38,23 +40,23 @@ class Main
                 .fadeOut(1)
                 .fadeIn(50);
             
-            var scoreLabel = new ScoreLabelHx(new ScoreLabel(10, 0));
+            var scoreLabel = new ScoreLabel(10, 0).toScoreLabelHx();
             
-            var timeLabel = new TimeLabelHx(new TimeLabel(10, 20));
+            var timeLabel = new TimeLabel(10, 20).toTimeLabelHx();
             timeLabel.time = 30;
             
-            var bar = new BarHx(new Bar(10, 40));
+            var bar = new Bar(10, 40).toBarHx();
             bar.maxvalue = 100;
             bar.value = 100;
             
-            var board = new VirtualMapHx(new VirtualMap(16, 16));
+            var board = new VirtualMap(16, 16).toVirtualMapHx();
             board.width = 320;
             board.height = 320;
 
             var icons = [];
             for (i in 0...20)
             {
-                var icon = new SpriteHx(new Sprite(16, 16));
+                var icon = new Sprite(16, 16).toSpriteHx();
                 icon.frame = 10;
                 icon.image = game.assets.get("icon0.png");
                 var meshedIcon = board.addChildOnMesh(icon);
@@ -63,7 +65,7 @@ class Main
                 icons.push(meshedIcon);
             }
             
-            var scene = new SceneHx(new Scene());
+            var scene = new Scene().toSceneHx();
             scene.backgroundColor = "#eeeeeeee";
             scene.addChild(sprite);
             scene.addChild(scoreLabel);

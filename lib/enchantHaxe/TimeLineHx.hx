@@ -2,6 +2,7 @@ package enchantHaxe;
 
 import enchant.*;
 using enchantHaxe.EasingTypes;
+using enchantHaxe.HxConverter;
 
 /**
  * ...
@@ -20,7 +21,7 @@ class TimelineHx extends EventTargetHx
         innerTimeline = base;
         queue = new ExternalArray<ActionHx, Action>(
             function() return innerTimeline.queue,
-            function(v) return new ActionHx(v),
+            function(v) return v.toActionHx(),
             function(v) return v.innerAction
         );
     }
@@ -31,7 +32,7 @@ class TimelineHx extends EventTargetHx
     public var innerTimeline(default, null):Timeline;
     
     public var node(get, null):NodeHx;
-    private function get_node() return new NodeHx(innerTimeline.node);
+    private function get_node() return innerTimeline.node.toNodeHx();
     
     public var queue(default, null):ExternalArray<ActionHx, Action>;
     
@@ -205,7 +206,11 @@ class TimelineHx extends EventTargetHx
      */
     public function then(func:NodeHx-> Void):TimelineHx
     {
-        innerTimeline.then(function (node) func(new NodeHx(node)));
+        innerTimeline.then(function(node)
+        {
+            var n = node.toNodeHx();
+            return func(n);
+        });
         return this;
     }
     

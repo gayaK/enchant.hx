@@ -1,6 +1,7 @@
 package enchantHaxe;
 
 import enchant.*;
+using enchantHaxe.HxConverter;
 
 /**
  * ...
@@ -28,7 +29,7 @@ class SpriteHx extends EntityHx
      * Spriteで表示する画像.
      */
     public var image(get, set):SurfaceHx;
-    private function get_image() return new SurfaceHx(innerSprite.image);
+    private function get_image() return innerSprite.image.toSurfaceHx();
     private function set_image(v:SurfaceHx)
     {
         innerSprite.image = v.innerSurface;

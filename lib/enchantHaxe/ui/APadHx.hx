@@ -2,6 +2,7 @@ package enchantHaxe.ui;
 
 import enchant.ui.*;
 import enchantHaxe.*;
+using enchantHaxe.HxConverter;
 
 /**
  * ...
@@ -26,12 +27,20 @@ class APadHx extends GroupHx
     public var innerAPad(default, null):APad;
     
     public var outside(get, set):SpriteHx;
-    private function get_outside() return innerAPad.outside;
-    private function set_outside(v) return (innerAPad.outside = v);
+    private function get_outside() return innerAPad.outside.toSpriteHx();
+    private function set_outside(v:SpriteHx):SpriteHx
+    {
+        innerAPad.outside = v.innerSprite;
+        return v;
+    }
     
-    public var inside(get, set):SpriteHx;
-    private function get_inside() return innerAPad.inside;
-    private function set_inside(v) return (innerAPad.inside = v);
+    public var inside(get, null):SpriteHx;
+    private function get_inside() return innerAPad.inside.toSpriteHx();
+    private function set_inside(v:SpriteHx):SpriteHx
+    {
+        innerAPad.inside = v.innerSprite;
+        return v;
+    }
     
     /**
      * タッチされているかどうか

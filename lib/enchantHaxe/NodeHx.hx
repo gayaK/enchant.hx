@@ -1,6 +1,7 @@
 package enchantHaxe;
 
 import enchant.*;
+using enchantHaxe.HxConverter;
 
 /**
  * ...
@@ -34,19 +35,19 @@ class NodeHx extends EventTargetHx
      * Nodeの親Node.
      */
     public var parentNode(get, null):GroupHx;
-    private function get_parentNode() return new GroupHx(innerNode.parentNode);
+    private function get_parentNode() return innerNode.parentNode.toGroupHx();
     
     /**
      * Nodeが属しているScene.
      */
     public var scene(get, null):SceneHx;
-    private function get_scene() return new SceneHx(innerNode.scene);
+    private function get_scene() return innerNode.scene.toSceneHx();
     
     /**
      * 
      */
     public var tl(get, null):TimelineHx;
-    private function get_tl() return new TimelineHx(innerNode.tl);
+    private function get_tl() return innerNode.tl.toTimelineHx();
     
     /**
      *  Nodeのx座標.

@@ -3,6 +3,7 @@ package enchantHaxe.ui;
 import enchant.*;
 import enchant.ui.*;
 import enchantHaxe.*;
+using enchantHaxe.HxConverter;
 
 /**
  * ...
@@ -21,7 +22,7 @@ class LifeLabelHx extends GroupHx
         innerLifeLabel = base;
         heart = new ExternalArray<SpriteHx, Sprite>(
             function() return innerLifeLabel.heart,
-            function(v) return new SpriteHx(v),
+            function(v) return v.toSpriteHx(),
             function(v) return v.innerSprite
         );
     }

@@ -2,8 +2,8 @@ package enchantHaxe;
 
 import enchant.*;
 import enchantHaxe.*;
-
 using enchantHaxe.EventTypes;
+using enchantHaxe.HxConverter;
 
 /**
  * ...
@@ -35,7 +35,7 @@ class EventHx
      * イベントのターゲット.
      */
     public var target(get, null):EventTargetHx;
-    private function get_target() return new EventTargetHx(innerEvent.target);
+    private function get_target() return innerEvent.target.toEventTargetHx();
     
     /**
      * イベント発生位置のx座標.

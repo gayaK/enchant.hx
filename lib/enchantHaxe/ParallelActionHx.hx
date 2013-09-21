@@ -1,6 +1,7 @@
 package enchantHaxe;
 
 import enchant.*;
+using enchantHaxe.HxConverter;
 
 /**
  * ...
@@ -19,12 +20,12 @@ class ParallelActionHx extends ActionHx
         innerParallelAction = base;
         actions = new ExternalArray<ActionHx, Action>(
             function() return innerParallelAction.actions,
-            function(v) return new ActionHx(v),
+            function(v) return v.toActionHx(),
             function(v) return v.innerAction
         );
         endedActions = new ExternalArray<ActionHx, Action>(
             function() return innerParallelAction.endedActions,
-            function(v) return new ActionHx(v),
+            function(v) return v.toActionHx(),
             function(v) return v.innerAction
         );
     }

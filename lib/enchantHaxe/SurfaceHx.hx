@@ -2,6 +2,7 @@ package enchantHaxe;
 
 import enchant.*;
 import js.html.*;
+using enchantHaxe.HxConverter;
 
 /**
  * ...
@@ -99,7 +100,7 @@ class SurfaceHx extends EventTargetHx
      */
     public function clone():SurfaceHx
     {
-        return new SurfaceHx(innerSurface.clone());
+        return innerSurface.clone().toSurfaceHx();
     }
     
     /**

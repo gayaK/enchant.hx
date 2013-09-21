@@ -1,11 +1,11 @@
 package enchant;
 
+import enchant.EasingFunction;
+
 /**
  * ...
  * @author gaya_K
  */
-
-typedef EasingFunction = Float->Float->Float->Float->Float;
 
 extern class Tween extends Action
 {

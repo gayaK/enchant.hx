@@ -2,6 +2,7 @@ package enchantHaxe;
 
 //import enchant.*;
 using enchantHaxe.EventTypes;
+using enchantHaxe.HxConverter;
 
 /**
  * ...
@@ -36,7 +37,7 @@ class EventTargetHx
     {
         var listener = function (e:enchant.Event):Void
         {
-            listenerHx(new EventHx(e));
+            listenerHx(e.toEventHx());
         };
         //listenerMap.set(listenerHx, listener);
 

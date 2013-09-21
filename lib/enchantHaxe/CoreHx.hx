@@ -1,6 +1,7 @@
 package enchantHaxe;
 
 import enchant.*;
+using enchantHaxe.HxConverter;
 
 /**
  * ...
@@ -21,7 +22,7 @@ class CoreHx extends EventTargetHx
         assets = new ExternalHash<SurfaceHx, Surface>
         (
             function () return innerCore.assets,
-            function (v) return new SurfaceHx(v),
+            function (v) return v.toSurfaceHx(),
             function (v) return v.innerSurface
         );
         input = new ExternalHashSimple<Bool>(function () return innerCore.input);
@@ -95,19 +96,19 @@ class CoreHx extends EventTargetHx
      * 現在のScene. Sceneスタック中の一番上のScene.
      */
     public var currentScene(get, null):SceneHx;
-    private function get_currentScene() return new SceneHx(innerCore.currentScene);
+    private function get_currentScene() return innerCore.currentScene.toSceneHx();
     
     /**
      * ルートScene. Sceneスタック中の一番下のScene.
      */
     public var rootScene(get, null):SceneHx;
-    private function get_rootScene() return new SceneHx(innerCore.rootScene);
+    private function get_rootScene() return innerCore.rootScene.toSceneHx();
     
     /**
      * ローディング時に表示されるScene.
      */
     public var loadingScene(get, null):SceneHx;
-    private function get_loadingScene() return new SceneHx(innerCore.loadingScene);
+    private function get_loadingScene() return innerCore.loadingScene.toSceneHx();
     
     /**
      * 
@@ -198,8 +199,7 @@ class CoreHx extends EventTargetHx
      */
     public function pushScene(scene:SceneHx):SceneHx
     {
-        var r = innerCore.pushScene(scene.innerScene);
-        return new SceneHx(r);
+        return innerCore.pushScene(scene.innerScene).toSceneHx();
     }
     
     /**
@@ -208,8 +208,7 @@ class CoreHx extends EventTargetHx
      */
     public function popScene():SceneHx
     {
-        var r = innerCore.popScene();
-        return new SceneHx(r);
+        return innerCore.popScene().toSceneHx();
     }
     
     /**
@@ -219,8 +218,7 @@ class CoreHx extends EventTargetHx
      */
     public function replaceScene(scene:SceneHx):SceneHx
     {
-        var r = innerCore.replaceScene(scene.innerScene);
-        return new SceneHx(r);
+        return innerCore.replaceScene(scene.innerScene).toSceneHx();
     }
     
     /**
@@ -230,8 +228,7 @@ class CoreHx extends EventTargetHx
      */
     public function removeScene(scene:SceneHx):SceneHx
     {
-        var r = innerCore.removeScene(scene.innerScene);
-        return new SceneHx(r);
+        return innerCore.removeScene(scene.innerScene).toSceneHx();
     }
     
     /**

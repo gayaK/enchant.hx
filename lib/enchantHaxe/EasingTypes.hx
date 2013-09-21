@@ -1,13 +1,12 @@
 package enchantHaxe;
 
 import enchant.*;
+import enchant.EasingFunction;
 
 /**
  * ...
  * @author gaya_K
  */
-
-typedef EasingFunction = Float->Float->Float->Float->Float;
 
 class EasingTypes
 {

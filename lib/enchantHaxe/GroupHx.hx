@@ -1,6 +1,7 @@
 package enchantHaxe;
 
 import enchant.*;
+using enchantHaxe.HxConverter;
 
 /**
  * ...
@@ -19,7 +20,7 @@ class GroupHx extends NodeHx
         innerGroup = base;
         childNodes = new ExternalArray<NodeHx, Node>(
             function() return innerGroup.childNodes,
-            function(v) return new NodeHx(v),
+            function(v) return v.toNodeHx(),
             function(v) return v.innerNode
         );
     }
@@ -38,13 +39,13 @@ class GroupHx extends NodeHx
      * 最初の子Node.
      */
     public var firstChild(get, null):NodeHx;
-    private function get_firstChild() return new NodeHx(innerGroup.firstChild);
+    private function get_firstChild() return innerGroup.firstChild.toNodeHx();
 
     /**
      * 最後の子Node.
      */
     public var lastChild(get, null):NodeHx;
-    private function get_lastChild() return new NodeHx(innerGroup.lastChild);
+    private function get_lastChild() return innerGroup.lastChild.toNodeHx();
 
     /**
     * Groupの回転角 (度数法).

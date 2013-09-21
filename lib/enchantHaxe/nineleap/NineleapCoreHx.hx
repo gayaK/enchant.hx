@@ -2,6 +2,7 @@ package enchantHaxe.nineleap;
 
 import enchant.nineleap.*;
 import enchantHaxe.*;
+using enchantHaxe.HxConverter;
 
 /**
  * ...

@@ -2,6 +2,7 @@ package enchantHaxe.nineleap;
 
 import enchant.nineleap.*;
 import enchantHaxe.*;
+using enchantHaxe.HxConverter;
 
 /**
  * ...
@@ -29,7 +30,7 @@ class SplashSceneHx extends SceneHx
      * 中央に表示する画像
      */
     public var image(get, set):SurfaceHx;
-    private function get_image() return new SurfaceHx(innerSplashScene.image);
+    private function get_image() return innerSplashScene.image.toSurfaceHx();
     private function set_image(v:SurfaceHx)
     {
         innerSplashScene.image = v.innerSurface;
