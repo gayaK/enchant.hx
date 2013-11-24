@@ -12,141 +12,141 @@ import enchantHaxe.ui.*;
  */
 class HxConverter
 {
-    public static function toActionEventTargetHx(v:ActionEventTarget):ActionEventTargetHx 
+    public static inline function toActionEventTargetHx(v:ActionEventTarget):ActionEventTargetHx 
     {
         return new ActionEventTargetHx(v);
     }
 
-    public static function toActionHx(v:Action):ActionHx 
+    public static inline function toActionHx(v:Action):ActionHx 
     {
         return new ActionHx(v);
     }
 
-    public static function toCoreHx(v:enchant.Core):CoreHx 
+    public static inline function toCoreHx(v:enchant.Core):CoreHx 
     {
         return new CoreHx(v);
     }
 
-    public static function toEntityHx(v:Entity):EntityHx 
+    public static inline function toEntityHx(v:Entity):EntityHx 
     {
         return new EntityHx(v);
     }
 
-    public static function toEventHx(v:Event):EventHx 
+    public static inline function toEventHx(v:Event):EventHx 
     {
         return new EventHx(v);
     }
 
-    public static function toEventTargetHx(v:EventTarget):EventTargetHx 
+    public static inline function toEventTargetHx(v:EventTarget):EventTargetHx 
     {
         return new EventTargetHx(v);
     }
 
-    public static function toGroupHx(v:Group):GroupHx 
+    public static inline function toGroupHx(v:Group):GroupHx 
     {
         return new GroupHx(v);
     }
 
-    public static function toLabelHx(v:Label):LabelHx 
+    public static inline function toLabelHx(v:Label):LabelHx 
     {
         return new LabelHx(v);
     }
 
-    public static function toMapHx(v:Map):MapHx 
+    public static inline function toMapHx(v:Map):MapHx 
     {
         return new MapHx(v);
     }
 
-    public static function toNodeHx(v:Node):NodeHx 
+    public static inline function toNodeHx(v:Node):NodeHx 
     {
         return new NodeHx(v);
     }
 
-    public static function toParallelActionHx(v:ParallelAction):ParallelActionHx 
+    public static inline function toParallelActionHx(v:ParallelAction):ParallelActionHx 
     {
         return new ParallelActionHx(v);
     }
 
-    public static function toSceneHx(v:Scene):SceneHx 
+    public static inline function toSceneHx(v:Scene):SceneHx 
     {
         return new SceneHx(v);
     }
 
-    public static function toSpriteHx(v:Sprite):SpriteHx 
+    public static inline function toSpriteHx(v:Sprite):SpriteHx 
     {
         return new SpriteHx(v);
     }
 
-    public static function toSurfaceHx(v:Surface):SurfaceHx 
+    public static inline function toSurfaceHx(v:Surface):SurfaceHx 
     {
         return new SurfaceHx(v);
     }
 
-    public static function toTimelineHx(v:Timeline):TimelineHx 
+    public static inline function toTimelineHx(v:Timeline):TimelineHx 
     {
         return new TimelineHx(v);
     }
 
-    public static function toTweenHx(v:Tween):TweenHx 
+    public static inline function toTweenHx(v:Tween):TweenHx 
     {
         return new TweenHx(v);
     }
 
     /* enchant.nineleap */
 
-    public static function toNineleapCoreHx(v:enchant.nineleap.Core):NineleapCoreHx 
+    public static inline function toNineleapCoreHx(v:enchant.nineleap.Core):NineleapCoreHx 
     {
         return new NineleapCoreHx(v);
     }
 
-    public static function toSplashSceneHx(v:SplashScene):SplashSceneHx 
+    public static inline function toSplashSceneHx(v:SplashScene):SplashSceneHx 
     {
         return new SplashSceneHx(v);
     }
 
     /* enchant.ui */
 
-    public static function toAPadHx(v:APad):APadHx 
+    public static inline function toAPadHx(v:APad):APadHx 
     {
         return new APadHx(v);
     }
 
-    public static function toBarHx(v:Bar):BarHx 
+    public static inline function toBarHx(v:Bar):BarHx 
     {
         return new BarHx(v);
     }
 
-    public static function toButtonHx(v:Button):ButtonHx 
+    public static inline function toButtonHx(v:Button):ButtonHx 
     {
         return new ButtonHx(v);
     }
 
-    public static function toLifeLabelHx(v:LifeLabel):LifeLabelHx 
+    public static inline function toLifeLabelHx(v:LifeLabel):LifeLabelHx 
     {
         return new LifeLabelHx(v);
     }
 
-    public static function toMutableTextHx(v:MutableText):MutableTextHx 
+    public static inline function toMutableTextHx(v:MutableText):MutableTextHx 
     {
         return new MutableTextHx(v);
     }
 
-    public static function toPadHx(v:Pad):PadHx 
+    public static inline function toPadHx(v:Pad):PadHx 
     {
         return new PadHx(v);
     }
 
-    public static function toScoreLabelHx(v:ScoreLabel):ScoreLabelHx 
+    public static inline function toScoreLabelHx(v:ScoreLabel):ScoreLabelHx 
     {
         return new ScoreLabelHx(v);
     }
 
-    public static function toTimeLabelHx(v:TimeLabel):TimeLabelHx 
+    public static inline function toTimeLabelHx(v:TimeLabel):TimeLabelHx 
     {
         return new TimeLabelHx(v);
     }
 
-    public static function toVirtualMapHx(v:VirtualMap):VirtualMapHx 
+    public static inline function toVirtualMapHx(v:VirtualMap):VirtualMapHx 
     {
         return new VirtualMapHx(v);
     }
