@@ -124,7 +124,7 @@ class EntityHx extends NodeHx
      * @param other 衝突判定を行うEntityなどx, y, width, heightプロパティを持ったObject.
      * @return 衝突判定の結果.
      */
-    public function intersect(other: { x:Float, y:Float, width:Float, height:Float }):Bool
+    public function intersect(other: SizedObject):Bool
     {
         return innerEntity.intersect(other);
     }
@@ -135,7 +135,7 @@ class EntityHx extends NodeHx
      * @param [distance] 衝突したと見なす最大の距離. デフォルト値は二つのEntityの横幅と高さの平均.
      * @return 衝突判定の結果.
      */
-    public function within(other: { x:Float, y:Float, width:Float, height:Float }, ?distance:Float):Bool
+    public function within(other: SizedObject, ?distance:Float):Bool
     {
         return innerEntity.within(other, distance);
     }

@@ -5,7 +5,7 @@ package enchant;
  * @author gaya_K
  */
 
- extern class Entity extends Node
+extern class Entity extends Node
 {
     public function new():Void;
 
@@ -25,8 +25,8 @@ package enchant;
     public var originX(default, default):Float;
     public var originY(default, default):Float;
 
-    public function intersect(other:{x:Float, y:Float, width:Float, height:Float}):Bool;
-    public function within(other:{x:Float, y:Float, width:Float, height:Float}, ?distance:Float):Bool;
+    public function intersect(other:SizedObject):Bool;
+    public function within(other:SizedObject, ?distance:Float):Bool;
     public function scale(x:Float, y:Float):Void;
     public function rotate(deg:Float):Void;
     public function enableCollection():Void;
