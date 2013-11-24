@@ -295,8 +295,6 @@ enchant.ui.Button = enchant.Class.create(enchant.Entity, {
             this._element = 'div';
         }
 
-        var prefix = '-' + enchant.ENV.VENDOR_PREFIX + '-';
-
         this.width = width || null;
         this.height = height || null;
         this.text = text;
@@ -312,7 +310,7 @@ enchant.ui.Button = enchant.Class.create(enchant.Entity, {
         style["padding"] = "2px 10px";
         style["text-align"] = "center";
         style["font-weight"] = "bold";
-        style[prefix + "border-radius"] = "0.5em";
+        style["border-radius"] = "0.5em";
 
         // テーマの指定がなければ "dark" を使う
         theme = theme || "dark";
@@ -415,13 +413,17 @@ enchant.ui.Button = enchant.Class.create(enchant.Entity, {
 });
 
 enchant.ui.Button.theme2css = function(theme) {
-    var prefix = '-' + enchant.ENV.VENDOR_PREFIX + '-';
+    var prefix = '-' + enchant.ENV.VENDOR_PREFIX.toLowerCase() + '-';
     var obj = {};
     var bg = theme.background;
     var bd = theme.border;
     var ts = theme.textShadow;
     var bs = theme.boxShadow;
-    obj['background-image'] = prefix + bg.type + '('+ [ bg.start, bg.end ] + ')';
+    if (prefix === '-ms-') {
+        obj['background'] = bg.start;
+    } else {
+        obj['background-image'] = prefix + bg.type + '('+ [ 'top', bg.start, bg.end ] + ')';
+    }
     obj['color'] = theme.color;
     obj['border'] = bd.color + ' ' + bd.width + ' ' + bd.type;
     obj['text-shadow'] = ts.offsetX + 'px ' + ts.offsetY + 'px ' + ts.blur + ' ' + ts.color;
@@ -486,6 +488,9 @@ enchant.ui.Button.DEFAULT_THEME = {
  */
 enchant.ui.MutableText = enchant.Class.create(enchant.Sprite, {
     /**
+     * ビットマップフォントを用いたラベルクラス
+     * (参考: draw.text.js http://d.hatena.ne.jp/nakamura001/20110430/1304181043)
+     * enchant.js 添付素材の font*.png が利用可能。
      *
      * @usage
      *     var text = new MutableText(0, 0);
@@ -606,7 +611,12 @@ enchant.ui.ScoreLabel = enchant.Class.create(enchant.ui.MutableText, {
             if (this.easing === 0) {
                 this.text = this.label + (this._current = this._score);
             } else {
-                this._current += Math.ceil((this._score - this._current) / this.easing);
+                var dist = this._score - this._current;
+                if (0 < dist) {
+                    this._current += Math.ceil(dist / this.easing);
+                } else if (dist < 0) {
+                    this._current += Math.floor(dist / this.easing);
+                }
                 this.text = this.label + this._current;
             }
         });
