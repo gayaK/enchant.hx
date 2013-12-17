@@ -15,7 +15,7 @@ class TimelineHx extends EventTargetHx
      * コンストラクタ.
      * @param base ラップするオブジェクト.
      */
-    public function new(base:Timeline) 
+    public function new(base:Timeline)
     {
         super(base);
         innerTimeline = base;
@@ -25,27 +25,27 @@ class TimelineHx extends EventTargetHx
             function(v) return v.innerAction
         );
     }
-    
+
     /**
      * 内包するオブジェクト.
      */
     public var innerTimeline(default, null):Timeline;
-    
+
     public var node(get, null):NodeHx;
     private function get_node() return innerTimeline.node.toNodeHx();
-    
+
     public var queue(default, null):ExternalArray<ActionHx, Action>;
-    
+
     public var paused(get, null):Bool;
     private function get_paused() return innerTimeline.paused;
-    
+
     public var looped(get, null):Bool;
     private function get_looped() return innerTimeline.looped;
-    
+
     public var isFrameBased(get, set):Bool;
     private function get_isFrameBased() return innerTimeline.isFrameBased;
     private function set_isFrameBased(v) return (innerTimeline.isFrameBased = v);
-    
+
     /**
      * 一つのenchant.Event.ENTER_FRAMEイベントはアニメーションに一つの時間単位になる。 （デフォルト）
      */
@@ -53,7 +53,7 @@ class TimelineHx extends EventTargetHx
     {
         innerTimeline.setFrameBased();
     }
-    
+
     /**
      * 一つのenchant.Event.ENTER_FRAMEイベントはアニメーションに前のフレームから経過した時間になる。
      */
@@ -61,7 +61,7 @@ class TimelineHx extends EventTargetHx
     {
         innerTimeline.setTimeBased();
     }
-    
+
     /**
      * キューの先頭にあるアクションを終了し、次のアクションへ移行する。
      * アクションの中から呼び出されるが、外から呼び出すこともできる。
@@ -75,7 +75,7 @@ class TimelineHx extends EventTargetHx
     {
         innerTimeline.next(remainingTime);
     }
-    
+
     /**
      * ターゲットの enterframe イベントのリスナとして登録される関数
      * 1フレーム経過する際に実行する処理が書かれている。
@@ -87,9 +87,9 @@ class TimelineHx extends EventTargetHx
     {
         innerTimeline.tick(enterFrameEvent.innerEventTarget);
     }
-    
+
     /**
-     * 
+     *
      * @param action
      * @return
      */
@@ -98,7 +98,7 @@ class TimelineHx extends EventTargetHx
         innerTimeline.add(action.innerAction);
         return this;
     }
-    
+
     /**
      * アクションを簡単に追加するためのメソッド。
      * 実体は add メソッドのラッパ。
@@ -110,7 +110,7 @@ class TimelineHx extends EventTargetHx
         innerTimeline.action(params);
         return this;
     }
-    
+
     /**
      * トゥイーンを簡単に追加するためのメソッド。
      * 実体は add メソッドのラッパ。
@@ -122,7 +122,7 @@ class TimelineHx extends EventTargetHx
         innerTimeline.tween(params);
         return this;
     }
-    
+
     /**
      * タイムラインのキューをすべて破棄する。終了イベントは発行されない。
      * @return
@@ -132,7 +132,7 @@ class TimelineHx extends EventTargetHx
         innerTimeline.clear();
         return this;
     }
-    
+
     /**
      * タイムラインを早送りする。
      * 指定したフレーム数が経過したのと同様の処理を、瞬時に実行する。
@@ -145,7 +145,7 @@ class TimelineHx extends EventTargetHx
         innerTimeline.skip(frames);
         return this;
     }
-    
+
     /**
      * タイムラインの実行を一時停止する
      * @return
@@ -155,7 +155,7 @@ class TimelineHx extends EventTargetHx
         innerTimeline.pause();
         return this;
     }
-    
+
     /**
      * タイムラインの実行を再開する
      * @return
@@ -165,7 +165,7 @@ class TimelineHx extends EventTargetHx
         innerTimeline.resume();
         return this;
     }
-    
+
     /**
      * タイムラインをループさせる。
      * ループしているときに終了したアクションは、タイムラインから取り除かれた後
@@ -177,7 +177,7 @@ class TimelineHx extends EventTargetHx
         innerTimeline.loop();
         return this;
     }
-    
+
     /**
      * タイムラインのループを解除する。
      * @return
@@ -187,7 +187,7 @@ class TimelineHx extends EventTargetHx
         innerTimeline.unloop();
         return this;
     }
-    
+
     /**
      * 指定したフレーム数だけ待ち、何もしないアクションを追加する。
      * @param time
@@ -198,7 +198,7 @@ class TimelineHx extends EventTargetHx
         innerTimeline.delay(time);
         return this;
     }
-    
+
     /**
      * 関数を実行し、即時に次のアクションに移るアクションを追加する。
      * @param func
@@ -213,7 +213,7 @@ class TimelineHx extends EventTargetHx
         });
         return this;
     }
-    
+
     /**
      * 実行したい関数を、フレーム数をキーとした連想配列(オブジェクト)で複数指定し追加する。
      * 内部的には delay, then を用いている。
@@ -224,7 +224,7 @@ class TimelineHx extends EventTargetHx
     {
         innerTimeline.cue(cue);
     }
-    
+
     /**
      * ある関数を指定したフレーム数繰り返し実行するアクションを追加する。
      * @param func 実行したい関数
@@ -236,7 +236,7 @@ class TimelineHx extends EventTargetHx
         innerTimeline.repeat(func, time);
         return this;
     }
-    
+
     /**
      * 複数のアクションを並列で実行したいときに指定する。
      * and で結ばれたすべてのアクションが終了するまで次のアクションには移行しない
@@ -247,7 +247,7 @@ class TimelineHx extends EventTargetHx
         innerTimeline.and();
         return this;
     }
-    
+
     /**
      * true値 が返るまで、関数を毎フレーム実行するアクションを追加する。
      * @param func
@@ -258,7 +258,7 @@ class TimelineHx extends EventTargetHx
         innerTimeline.waitUntil(func);
         return this;
     }
-    
+
     /**
      * Entity の不透明度をなめらかに変えるアクションを追加する。
      * @param opacity 目標の不透明度
@@ -272,7 +272,7 @@ class TimelineHx extends EventTargetHx
         innerTimeline.fadeTo(opacity, time, func);
         return this;
     }
-    
+
     /**
      * Entity をフェードインするアクションを追加する。
      * fadeTo(1) のエイリアス。
@@ -286,7 +286,7 @@ class TimelineHx extends EventTargetHx
         innerTimeline.fadeIn(time, func);
         return this;
     }
-    
+
     /**
      * Entity をフェードアウトするアクションを追加する。
      * fadeTo(0) のエイリアス。
@@ -300,7 +300,7 @@ class TimelineHx extends EventTargetHx
         innerTimeline.fadeOut(time, func);
         return this;
     }
-    
+
     /**
      * Entity の位置をなめらかに移動させるアクションを追加する。
      * @param x 目標のx座標
@@ -315,7 +315,7 @@ class TimelineHx extends EventTargetHx
         innerTimeline.moveTo(x, y, time, func);
         return this;
     }
-    
+
     /**
      * Entity のx座標をなめらかに変化させるアクションを追加する。
      * @param x
@@ -329,7 +329,7 @@ class TimelineHx extends EventTargetHx
         innerTimeline.moveX(x, time, func);
         return this;
     }
-    
+
     /**
      * Entity のy座標をなめらかに変化させるアクションを追加する。
      * @param y
@@ -343,7 +343,7 @@ class TimelineHx extends EventTargetHx
         innerTimeline.moveY(y, time, func);
         return this;
     }
-    
+
     /**
      * Entity の位置をなめらかに変化させるアクションを追加する。
      * 座標は、アクション開始時からの相対座標で指定する。
@@ -359,7 +359,7 @@ class TimelineHx extends EventTargetHx
         innerTimeline.moveBy(x, y, time, func);
         return this;
     }
-    
+
     /**
      * Entity の opacity を0にする (即時)
      * @return
@@ -369,7 +369,7 @@ class TimelineHx extends EventTargetHx
         innerTimeline.hide();
         return this;
     }
-    
+
     /**
      * Entity の opacity を1にする (即時)
      * @return
@@ -379,7 +379,7 @@ class TimelineHx extends EventTargetHx
         innerTimeline.show();
         return this;
     }
-    
+
     /**
      * Entity をシーンから削除する。
      * シーンから削除された場合、 enterframe イベントは呼ばれなくなるので、
@@ -392,7 +392,7 @@ class TimelineHx extends EventTargetHx
         innerTimeline.removeFromScene();
         return this;
     }
-    
+
     /**
      * Entity をなめらかに拡大・縮小するアクションを追加する。
      * @param scale 縮尺
@@ -406,7 +406,7 @@ class TimelineHx extends EventTargetHx
         innerTimeline.scaleTo(scale, time, func);
         return this;
     }
-    
+
     /**
      * Entity をなめらかに拡大・縮小させるアクションを追加する。
      * 相対縮尺 (ex. アクション開始時の縮尺の n 倍) で指定する。
@@ -421,7 +421,7 @@ class TimelineHx extends EventTargetHx
         innerTimeline.scaleBy(scale, time, func);
         return this;
     }
-    
+
     /**
      * Entity をなめらかに回転させるアクションを追加する。
      * @param deg 目標の回転角度 (弧度法: 1回転を 360 とする)
@@ -429,13 +429,13 @@ class TimelineHx extends EventTargetHx
      * @param easing イージング関数
      * @return
      */
-    public function rotateTo(time:Int , ?easing:EasingType):TimelineHx
+    public function rotateTo(deg:Int, time:Int , ?easing:EasingType):TimelineHx
     {
         var func = (easing == null) ? null : easing.toFunction();
-        innerTimeline.rotateTo(time, func);
+        innerTimeline.rotateTo(deg, time, func);
         return this;
     }
-    
+
     /**
      * Entity をなめらかに回転させるアクションを追加する。
      * 角度は相対角度 (アクション開始時の角度から更に n 度) で指定する
@@ -444,10 +444,10 @@ class TimelineHx extends EventTargetHx
      * @param easing イージング関数
      * @return
      */
-    public function rotateBy(time:Int , ?easing:EasingType):TimelineHx
+    public function rotateBy(deg:Int, time:Int , ?easing:EasingType):TimelineHx
     {
         var func = (easing == null) ? null : easing.toFunction();
-        innerTimeline.rotateBy(time, func);
+        innerTimeline.rotateBy(deg, time, func);
         return this;
     }
 }
