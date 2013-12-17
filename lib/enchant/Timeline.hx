@@ -48,6 +48,6 @@ extern class Timeline extends EventTarget
     public function removeFromScene():Timeline;
     public function scaleTo(scale:Float , time:Int , ?easing:EasingFunction):Timeline;
     public function scaleBy(scale:Float,time:Int , ?easing:EasingFunction):Timeline;
-    public function rotateTo(time:Int , ?easing:EasingFunction):Timeline;
-    public function rotateBy(time:Int , ?easing:EasingFunction):Timeline;
+    public function rotateTo(deg:Int, time:Int , ?easing:EasingFunction):Timeline;
+    public function rotateBy(deg:Int, time:Int , ?easing:EasingFunction):Timeline;
 }
